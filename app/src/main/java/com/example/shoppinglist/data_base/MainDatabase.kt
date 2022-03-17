@@ -11,7 +11,8 @@ import com.example.shoppinglist.entities.*
         NoteItem::class,
         ShoppingList::class,
         ShoppingListItem::class],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 abstract class MainDatabase : RoomDatabase() {
     abstract fun getDao(): Dao
