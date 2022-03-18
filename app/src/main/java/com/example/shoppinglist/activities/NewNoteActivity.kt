@@ -7,6 +7,9 @@ import android.text.Spannable
 import android.text.style.StyleSpan
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.example.shoppinglist.R
 import com.example.shoppinglist.databinding.ActivityNewNoteBinding
@@ -53,6 +56,12 @@ class NewNoteActivity : AppCompatActivity() {
             finish()
         } else if (item.itemId == R.id.note_menu_bold) {
             setSelectedTextBold()
+        } else if (item.itemId == R.id.note_menu_color_picker) {
+            if(binding.llColorPicker.isShown){
+                closeColorPicker()
+            } else {
+                openColorPicker()
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -109,4 +118,46 @@ class NewNoteActivity : AppCompatActivity() {
     private fun getCurrentTime(): String =
         SimpleDateFormat("HH:mm - dd.MM.yy", Locale.getDefault())
             .format(Calendar.getInstance().time)
+
+    private fun openColorPicker(){
+        binding.llColorPicker.visibility = View.VISIBLE
+        val openAnim = AnimationUtils.loadAnimation(this, R.anim.open_color_picker)
+        binding.llColorPicker.startAnimation(openAnim)
+    }
+
+    private fun closeColorPicker(){
+        val openAnim = AnimationUtils.loadAnimation(this, R.anim.close_color_picker)
+        openAnim.setAnimationListener(object : Animation.AnimationListener{
+            override fun onAnimationStart(p0: Animation?) {
+
+            }
+
+            override fun onAnimationEnd(p0: Animation?) {
+                binding.llColorPicker.visibility = View.GONE
+            }
+
+            override fun onAnimationRepeat(p0: Animation?) {
+
+            }
+
+        })
+        binding.llColorPicker.startAnimation(openAnim)
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

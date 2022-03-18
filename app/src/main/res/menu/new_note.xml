@@ -5,15 +5,22 @@
     <item
         android:id="@+id/note_menu_save"
         android:icon="@drawable/ic_menu_save"
-        android:orderInCategory="2"
+        android:orderInCategory="9"
         android:title="Save"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/note_menu_bold"
-        android:icon="@drawable/ic_baseline_format_bold_24"
-        android:orderInCategory="1"
+        android:icon="@drawable/ic_menu_bold"
+        android:orderInCategory="2"
         android:title="Bold"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/note_menu_color_picker"
+        android:icon="@drawable/ic_menu_color_picker"
+        android:orderInCategory="1"
+        android:title="Color"
         app:showAsAction="ifRoom" />
 
 </menu>

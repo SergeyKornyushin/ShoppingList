@@ -8,4 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="green_main">#29BD42</color>
+
+    <color name="picker_red">#BF2020</color>
+    <color name="picker_green">#29BD42</color>
+    <color name="picker_blue">#2289CD</color>
+    <color name="picker_black">#1B1B1B</color>
+    <color name="picker_yellow">#FFCD36</color>
+    <color name="picker_orange">#FA8F1F</color>
 </resources>
