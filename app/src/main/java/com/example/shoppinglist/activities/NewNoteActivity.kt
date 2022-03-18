@@ -12,6 +12,7 @@ import com.example.shoppinglist.R
 import com.example.shoppinglist.databinding.ActivityNewNoteBinding
 import com.example.shoppinglist.entities.NoteItem
 import com.example.shoppinglist.fragments.NoteFragment
+import com.example.shoppinglist.utils.HtmlManager
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -35,7 +36,7 @@ class NewNoteActivity : AppCompatActivity() {
             noteItem = intent.getSerializableExtra(NoteFragment.NEW_NOTE_KEY) as NoteItem
             if (noteItem != null) {
                 etTitle.setText(noteItem?.title)
-                etDescription.setText(noteItem?.content)
+                etDescription.setText(HtmlManager.getFromHtml(noteItem?.content!!).trim())
             }
         }
     }
@@ -93,7 +94,7 @@ class NewNoteActivity : AppCompatActivity() {
     private fun updateNote(): NoteItem? = with(binding) {
         noteItem?.copy(
             title = etTitle.text.toString(),
-            content = etDescription.text.toString()
+            content = HtmlManager.toHtml(etDescription.text)
         )
     }
 
@@ -101,7 +102,7 @@ class NewNoteActivity : AppCompatActivity() {
         NoteItem(
             null,
             binding.etTitle.text.toString(),
-            binding.etDescription.text.toString(),
+            HtmlManager.toHtml(binding.etDescription.text),
             getCurrentTime(), ""
         )
 
