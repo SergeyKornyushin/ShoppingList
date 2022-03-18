@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import com.example.shoppinglist.entities.NoteItem
 import kotlinx.coroutines.flow.Flow
 
@@ -14,4 +15,10 @@ interface Dao {
 
     @Insert
     suspend fun insertNote(note: NoteItem)
+
+    @Query("DELETE FROM note_list WHERE id IS :id")
+    suspend fun deleteNote(id: Int)
+
+    @Update
+    suspend fun updateNote(note: NoteItem)
 }

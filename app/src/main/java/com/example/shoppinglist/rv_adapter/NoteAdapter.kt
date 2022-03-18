@@ -10,23 +10,29 @@ import com.example.shoppinglist.R
 import com.example.shoppinglist.databinding.NoteRvItemBinding
 import com.example.shoppinglist.entities.NoteItem
 
-class NoteAdapter : ListAdapter<NoteItem, NoteAdapter.ItemHolder>(ItemComparator()) {
+class NoteAdapter(private val listener: Listener) : ListAdapter<NoteItem, NoteAdapter.ItemHolder>(ItemComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder =
         ItemHolder.create(parent)
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        holder.setData(getItem(position))
+        holder.setData(getItem(position), listener)
     }
 
     class ItemHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = NoteRvItemBinding.bind(view)
 
-        fun setData(noteItem: NoteItem) =
+        fun setData(noteItem: NoteItem, listener: Listener) =
             with(binding) {
                 tvTitle.text = noteItem.title
                 tvDescribtion.text = noteItem.content
-                tvTitle.text = noteItem.creationTime
+                tvTime.text = noteItem.creationTime
+                itemView.setOnClickListener {
+                    listener.onClickItem(noteItem)
+                }
+                ibtnDelete.setOnClickListener {
+                    listener.deleteItem(noteItem.id!!)
+                }
             }
 
         companion object {
@@ -44,5 +50,10 @@ class NoteAdapter : ListAdapter<NoteItem, NoteAdapter.ItemHolder>(ItemComparator
 
         override fun areContentsTheSame(oldItem: NoteItem, newItem: NoteItem): Boolean =
             oldItem == newItem
+    }
+
+    interface Listener{
+        fun deleteItem(id: Int)
+        fun onClickItem(noteItem: NoteItem)
     }
 }
