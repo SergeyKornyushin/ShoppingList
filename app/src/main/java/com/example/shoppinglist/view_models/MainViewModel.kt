@@ -10,12 +10,16 @@ class MainViewModel(database: MainDatabase) : ViewModel() {
     val dao = database.getDao()
     val allNotes: LiveData<List<NoteItem>> = dao.getAllNotes().asLiveData()
 
-    fun insertNote(note: NoteItem) = viewModelScope.launch {
-        dao.insertNote(note)
+    fun insertNote(noteItem: NoteItem) = viewModelScope.launch {
+        dao.insertNote(noteItem)
     }
 
     fun deleteNote(id: Int) = viewModelScope.launch {
         dao.deleteNote(id)
+    }
+
+    fun updateNote(noteItem: NoteItem) = viewModelScope.launch {
+        dao.updateNote(noteItem)
     }
 
     class MainViewModelFactory(private val database: MainDatabase) : ViewModelProvider.Factory {

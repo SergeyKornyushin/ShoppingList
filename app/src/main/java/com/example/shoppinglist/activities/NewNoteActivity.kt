@@ -11,15 +11,30 @@ import com.example.shoppinglist.entities.NoteItem
 import com.example.shoppinglist.fragments.NoteFragment
 import java.text.SimpleDateFormat
 import java.util.*
+
 //todo refacor
 class NewNoteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNewNoteBinding
+    private var noteItem: NoteItem? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNewNoteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        getNote()
+    }
+
+    private fun getNote() = with(binding) {
+        if (intent.hasExtra(NoteFragment.NEW_NOTE_KEY)) {
+            noteItem = intent.getSerializableExtra(NoteFragment.NEW_NOTE_KEY) as NoteItem
+            if (noteItem != null) {
+                etTitle.setText(noteItem?.title)
+                etDescription.setText(noteItem?.content)
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -37,11 +52,26 @@ class NewNoteActivity : AppCompatActivity() {
     }
 
     private fun setMainResult() {
-        val intent = Intent().apply {
-            putExtra(NoteFragment.NEW_NOTE_KEY, createNewNote())
+        val editState: String
+        val tempNote = if (noteItem == null) {
+            editState = NoteFragment.CREATE_NOTE_KEY
+            createNewNote()
+        } else {
+            editState = NoteFragment.UPDATE_NOTE_KEY
+            updateNote()
         }
-        setResult(RESULT_OK, intent)
+        setResult(RESULT_OK, Intent().apply {
+            putExtra(NoteFragment.NEW_NOTE_KEY, tempNote)
+            putExtra(NoteFragment.EDIT_STATE_KEY, editState)
+        })
         finish()
+    }
+
+    private fun updateNote(): NoteItem? = with(binding) {
+        noteItem?.copy(
+            title = etTitle.text.toString(),
+            content = etDescription.text.toString()
+        )
     }
 
     private fun createNewNote(): NoteItem =

@@ -56,23 +56,35 @@ class NoteFragment : BaseFragment(), NoteAdapter.Listener {
         editLauncher.launch(Intent(activity, NewNoteActivity::class.java))
     }
 
-    companion object {
-        const val NEW_NOTE_KEY = "title_key"
-        @JvmStatic
-        fun newInstance() = NoteFragment()
-    }
-
     private fun onEditResult(){
         editLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()){
             if(it.resultCode == Activity.RESULT_OK){
-                mainViewModel.insertNote(it.data?.getSerializableExtra(NEW_NOTE_KEY) as NoteItem)
-                Log.i("test4", "onEditResult: ${it.data?.getSerializableExtra(NEW_NOTE_KEY) as NoteItem}")
+                if (it.data?.getStringExtra(EDIT_STATE_KEY) == CREATE_NOTE_KEY){
+                    mainViewModel.insertNote(it.data?.getSerializableExtra(NEW_NOTE_KEY) as NoteItem)
+                } else {
+                    mainViewModel.updateNote(it.data?.getSerializableExtra(NEW_NOTE_KEY) as NoteItem)
+                }
             }
         }
     }
 
     override fun deleteItem(id: Int) {
         mainViewModel.deleteNote(id)
+    }
+
+    override fun onClickItem(noteItem: NoteItem) {
+        editLauncher.launch(Intent(activity, NewNoteActivity::class.java).apply {
+            putExtra(NEW_NOTE_KEY, noteItem)
+        })
+    }
+
+    companion object {
+        const val NEW_NOTE_KEY = "title_key"
+        const val EDIT_STATE_KEY = "edit_state_key"
+        const val CREATE_NOTE_KEY = "create_note_key"
+        const val UPDATE_NOTE_KEY = "update_note_key"
+        @JvmStatic
+        fun newInstance() = NoteFragment()
     }
 }
