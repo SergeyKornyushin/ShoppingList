@@ -16,6 +16,5 @@ object FragmentManager {
             .commit()
 
         currentFrag = newFrag
-
     }
 }
