@@ -66,18 +66,42 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.93"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.45"
+        tools:visibility="visible">
 
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#EAEAEA"
-            android:padding="3dp">
+            android:padding="1dp">
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/pic_black"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="3dp"
+                    android:background="@color/picker_black" />
+
+                <ImageButton
+                    android:id="@+id/pic_blue"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="3dp"
+                    android:background="@color/picker_blue" />
+
+                <ImageButton
+                    android:id="@+id/pic_yellow"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="3dp"
+                    android:background="@color/picker_yellow" />
 
                 <ImageButton
                     android:id="@+id/pic_red"
@@ -99,32 +123,15 @@
                     android:layout_height="40dp"
                     android:layout_margin="3dp"
                     android:background="@color/picker_orange" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
                 <ImageButton
-                    android:id="@+id/pic_yellow"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="3dp"
-                    android:background="@color/picker_yellow" />
-
-                <ImageButton
-                    android:id="@+id/pic_blue"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="3dp"
-                    android:background="@color/picker_blue" />
-
-                <ImageButton
-                    android:id="@+id/pick_black"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="3dp"
-                    android:background="@color/picker_black" />
+                    android:id="@+id/pic_move_window"
+                    android:layout_width="35dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@null"
+                    android:clickable="false"
+                    app:srcCompat="@drawable/ic_menu_move" />
             </TableRow>
 
         </TableLayout>

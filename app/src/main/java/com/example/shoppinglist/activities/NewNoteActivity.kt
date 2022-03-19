@@ -1,9 +1,11 @@
 package com.example.shoppinglist.activities
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Spannable
+import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import android.view.Menu
 import android.view.MenuItem
@@ -11,15 +13,18 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.shoppinglist.R
 import com.example.shoppinglist.databinding.ActivityNewNoteBinding
 import com.example.shoppinglist.entities.NoteItem
 import com.example.shoppinglist.fragments.NoteFragment
 import com.example.shoppinglist.utils.HtmlManager
+import com.example.shoppinglist.utils.TouchListener
 import java.text.SimpleDateFormat
 import java.util.*
 
 //todo refacor
+@SuppressLint("ClickableViewAccessibility")
 class NewNoteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNewNoteBinding
     private var noteItem: NoteItem? = null
@@ -32,6 +37,10 @@ class NewNoteActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         getNote()
+
+        binding.llColorPicker.setOnTouchListener(TouchListener())
+
+        onClickColorPicker()
     }
 
     private fun getNote() = with(binding) {
@@ -57,7 +66,7 @@ class NewNoteActivity : AppCompatActivity() {
         } else if (item.itemId == R.id.note_menu_bold) {
             setSelectedTextBold()
         } else if (item.itemId == R.id.note_menu_color_picker) {
-            if(binding.llColorPicker.isShown){
+            if (binding.llColorPicker.isShown) {
                 closeColorPicker()
             } else {
                 openColorPicker()
@@ -66,22 +75,44 @@ class NewNoteActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun setSelectedTextBold() = with(binding) {
-        val startPos = etDescription.selectionStart
-        val endPos = etDescription.selectionEnd
-
-        val styles = etDescription.text.getSpans(startPos, endPos, StyleSpan::class.java)
-
+    private fun setSelectedTextBold() = with(binding.etDescription) {
+        val styles = text.getSpans(selectionStart, selectionEnd, StyleSpan::class.java)
         var boldStyle: StyleSpan? = null
-        if (styles.isNotEmpty()){
-            etDescription.text.removeSpan(styles[0])
+        if (styles.isNotEmpty()) {
+            text.removeSpan(styles[0])
         } else {
             boldStyle = StyleSpan(Typeface.BOLD)
         }
 
-        etDescription.text.setSpan(boldStyle, startPos, endPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        etDescription.text.trim()
-        etDescription.setSelection(startPos)
+        text.setSpan(boldStyle, selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        text.trim()
+        setSelection(selectionStart)
+    }
+
+    private fun onClickColorPicker() = with(binding){
+        picRed.setOnClickListener { setSelectedTextColor(R.color.picker_red) }
+        picBlack.setOnClickListener { setSelectedTextColor(R.color.picker_black) }
+        picBlue.setOnClickListener { setSelectedTextColor(R.color.picker_blue) }
+        picGreen.setOnClickListener { setSelectedTextColor(R.color.picker_green) }
+        picYellow.setOnClickListener { setSelectedTextColor(R.color.picker_yellow) }
+        picOrange.setOnClickListener { setSelectedTextColor(R.color.picker_orange) }
+    }
+
+    private fun setSelectedTextColor(colorId: Int) = with(binding.etDescription) {
+        val styles = text.getSpans(selectionStart, selectionEnd, ForegroundColorSpan::class.java)
+
+        if (styles.isNotEmpty()) {
+            text.removeSpan(styles[0])
+        }
+
+        text.setSpan(
+            ForegroundColorSpan(ContextCompat.getColor(this@NewNoteActivity, colorId)),
+            selectionStart,
+            selectionEnd,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        text.trim()
+        setSelection(selectionStart)
     }
 
     private fun setMainResult() {
@@ -119,27 +150,21 @@ class NewNoteActivity : AppCompatActivity() {
         SimpleDateFormat("HH:mm - dd.MM.yy", Locale.getDefault())
             .format(Calendar.getInstance().time)
 
-    private fun openColorPicker(){
+    private fun openColorPicker() {
         binding.llColorPicker.visibility = View.VISIBLE
         val openAnim = AnimationUtils.loadAnimation(this, R.anim.open_color_picker)
         binding.llColorPicker.startAnimation(openAnim)
     }
 
-    private fun closeColorPicker(){
+    private fun closeColorPicker() {
         val openAnim = AnimationUtils.loadAnimation(this, R.anim.close_color_picker)
-        openAnim.setAnimationListener(object : Animation.AnimationListener{
-            override fun onAnimationStart(p0: Animation?) {
-
-            }
-
+        openAnim.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationStart(p0: Animation?) {}
             override fun onAnimationEnd(p0: Animation?) {
                 binding.llColorPicker.visibility = View.GONE
             }
 
-            override fun onAnimationRepeat(p0: Animation?) {
-
-            }
-
+            override fun onAnimationRepeat(p0: Animation?) {}
         })
         binding.llColorPicker.startAnimation(openAnim)
     }
