@@ -2,6 +2,7 @@ package com.example.shoppinglist.dialogs
 
 import android.app.AlertDialog
 import android.content.Context
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import com.example.shoppinglist.databinding.NewListDialogBinding
 
@@ -20,7 +21,7 @@ object NewListDialog {
             }
         }
         dialog = builder.create()
-        dialog?.window?.setBackgroundDrawable(null)
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(0x00000000))
         dialog?.show()
     }
 

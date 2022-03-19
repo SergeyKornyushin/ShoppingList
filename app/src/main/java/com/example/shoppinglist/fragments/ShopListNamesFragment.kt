@@ -8,12 +8,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import com.example.shoppinglist.activities.MainApp
 import com.example.shoppinglist.databinding.FragmentShopListNamesBinding
+import com.example.shoppinglist.dialogs.DeleteDialog
 import com.example.shoppinglist.dialogs.NewListDialog
+import com.example.shoppinglist.entities.NoteItem
 import com.example.shoppinglist.entities.ShoppingList
+import com.example.shoppinglist.rv_adapter.ShoppingListAdapter
 import com.example.shoppinglist.utils.TimeManager.getCurrentTime
 import com.example.shoppinglist.view_models.MainViewModel
 
-class ShopListNamesFragment : BaseFragment() {
+class ShopListNamesFragment : BaseFragment(), ShoppingListAdapter.Listener {
     private lateinit var binding: FragmentShopListNamesBinding
 
     private val mainViewModel: MainViewModel by activityViewModels {
@@ -36,9 +39,6 @@ class ShopListNamesFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mainViewModel.allShoppingLists.observe(viewLifecycleOwner) {
-
-        }
     }
 
     override fun onCreateView(
@@ -51,11 +51,27 @@ class ShopListNamesFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val adapter = ShoppingListAdapter(this)
+        binding.rvShopList.adapter = adapter
+        mainViewModel.allShoppingLists.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
     }
 
     companion object {
         @JvmStatic
         fun newInstance() = ShopListNamesFragment()
+    }
+
+    override fun deleteItem(id: Int) {
+        DeleteDialog.showDialog(context as AppCompatActivity, object : DeleteDialog.Listener{
+            override fun onClick() {
+                mainViewModel.deleteShoppingList(id)
+            }
+        })
+    }
+
+    override fun onClickItem(noteItem: NoteItem) {
+
     }
 }

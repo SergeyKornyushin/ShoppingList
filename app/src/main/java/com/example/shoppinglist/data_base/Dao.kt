@@ -28,4 +28,7 @@ interface Dao {
 
     @Query("SELECT * FROM shopping_list")
     fun getAllShoppingLists(): Flow<List<ShoppingList>>
+
+    @Query("DELETE FROM shopping_list WHERE id IS :id")
+    suspend fun deleteShoppingList(id: Int)
 }

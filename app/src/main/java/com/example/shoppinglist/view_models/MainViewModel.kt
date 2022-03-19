@@ -25,10 +25,15 @@ class MainViewModel(database: MainDatabase) : ViewModel() {
         dao.updateNote(noteItem)
     }
     //-------------notes-------------------
+    //-------------shopping_list-------------------
     fun insertShoppingList(listName: ShoppingList) = viewModelScope.launch {
         dao.insertShopListItem(listName)
     }
 
+    fun deleteShoppingList(id: Int) = viewModelScope.launch {
+        dao.deleteShoppingList(id)
+    }
+    //-------------shopping_list-------------------
     class MainViewModelFactory(private val database: MainDatabase) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(MainViewModel::class.java)){
