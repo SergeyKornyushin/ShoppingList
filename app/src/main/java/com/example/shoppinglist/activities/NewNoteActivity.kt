@@ -20,6 +20,7 @@ import com.example.shoppinglist.databinding.ActivityNewNoteBinding
 import com.example.shoppinglist.entities.NoteItem
 import com.example.shoppinglist.fragments.NoteFragment
 import com.example.shoppinglist.utils.HtmlManager
+import com.example.shoppinglist.utils.TimeManager.getCurrentTime
 import com.example.shoppinglist.utils.TouchListener
 import java.text.SimpleDateFormat
 import java.util.*
@@ -145,10 +146,6 @@ class NewNoteActivity : AppCompatActivity() {
             HtmlManager.toHtml(binding.etDescription.text),
             getCurrentTime(), ""
         )
-
-    private fun getCurrentTime(): String =
-        SimpleDateFormat("HH:mm - dd.MM.yy", Locale.getDefault())
-            .format(Calendar.getInstance().time)
 
     private fun openColorPicker() {
         binding.llColorPicker.visibility = View.VISIBLE

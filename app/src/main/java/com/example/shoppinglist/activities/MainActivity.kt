@@ -5,23 +5,26 @@ import android.os.Bundle
 import android.util.Log
 import com.example.shoppinglist.R
 import com.example.shoppinglist.databinding.ActivityMainBinding
+import com.example.shoppinglist.dialogs.NewListDialog
 import com.example.shoppinglist.fragments.FragmentManager
 import com.example.shoppinglist.fragments.NoteFragment
+import com.example.shoppinglist.fragments.ShopListNamesFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NewListDialog.Listener {
     lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        FragmentManager.setFragment(ShopListNamesFragment.newInstance(), this)
         setBottomNavListener()
     }
 
     //refactor
-    private fun setBottomNavListener(){
+    private fun setBottomNavListener() {
         binding.navView.setOnItemSelectedListener {
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.settings -> {
                     Log.i("test4", "settings: ")
                 }
@@ -29,13 +32,18 @@ class MainActivity : AppCompatActivity() {
                     FragmentManager.setFragment(NoteFragment.newInstance(), this)
                 }
                 R.id.shop_list -> {
-                    Log.i("test4", "shop_list: ")
+                    FragmentManager.setFragment(ShopListNamesFragment.newInstance(), this)
                 }
                 R.id.new_item -> {
                     FragmentManager.currentFrag?.onClickNew()
                 }
             }
-            true }
+            true
+        }
+    }
+
+    override fun onClick(name: String) {
+        Log.i("test4", "onClick: $name")
     }
 
 
