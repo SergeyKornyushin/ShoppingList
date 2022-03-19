@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.text.Spannable
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
+import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -37,10 +38,9 @@ class NewNoteActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         getNote()
-
         binding.llColorPicker.setOnTouchListener(TouchListener())
-
         onClickColorPicker()
+        actionMenuCallback()
     }
 
     private fun getNote() = with(binding) {
@@ -89,7 +89,7 @@ class NewNoteActivity : AppCompatActivity() {
         setSelection(selectionStart)
     }
 
-    private fun onClickColorPicker() = with(binding){
+    private fun onClickColorPicker() = with(binding) {
         picRed.setOnClickListener { setSelectedTextColor(R.color.picker_red) }
         picBlack.setOnClickListener { setSelectedTextColor(R.color.picker_black) }
         picBlue.setOnClickListener { setSelectedTextColor(R.color.picker_blue) }
@@ -167,6 +167,27 @@ class NewNoteActivity : AppCompatActivity() {
             override fun onAnimationRepeat(p0: Animation?) {}
         })
         binding.llColorPicker.startAnimation(openAnim)
+    }
+
+    private fun actionMenuCallback() {
+        val actionCallback = object : ActionMode.Callback {
+            override fun onCreateActionMode(mode: android.view.ActionMode?, menu: Menu?): Boolean {
+                menu?.clear()
+                return true
+            }
+
+            override fun onPrepareActionMode(mode: android.view.ActionMode?, menu: Menu?): Boolean {
+                menu?.clear()
+                return true
+            }
+
+            override fun onActionItemClicked(mode: android.view.ActionMode?, item: MenuItem?): Boolean {
+                return true
+            }
+
+            override fun onDestroyActionMode(mode: android.view.ActionMode?) {}
+        }
+        binding.etDescription.customSelectionActionModeCallback = actionCallback
     }
 }
 
