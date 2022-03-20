@@ -6,4 +6,16 @@
     <string name="new_item">New</string>
     <string name="ed_title_hint">Title</string>
     <string name="et_description">Description</string>
+
+    <!--new_list_dialog-->
+    <string name="new_list_name">New list name</string>
+    <string name="list_name">List name</string>
+    <string name="create_list">Create List</string>
+    <string name="update_list">Update List</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="you_want_to_delete_this_list">You want to delete this list?</string>
+    <string name="delete_item">Delete item</string>
+    <string name="btn_delete">Delete</string>
+    <string name="btn_cancel">Cancel</string>
 </resources>
