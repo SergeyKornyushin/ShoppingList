@@ -31,7 +31,7 @@ class ShoppingListAdapter(private val listener:Listener) : ListAdapter<ShoppingL
                 tvCreationTime.text = shoppingList.creationTime
 
                 itemView.setOnClickListener {
-
+                    listener.onClickItem(shoppingList)
                 }
                 ibtnDeleteShoppingItem.setOnClickListener {
                     listener.deleteItem(shoppingList.id!!)

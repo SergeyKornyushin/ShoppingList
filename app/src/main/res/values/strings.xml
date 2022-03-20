@@ -1,21 +1,36 @@
 <resources>
-    <string name="app_name">ShoppingList</string>
+    <!--bottom_menu.xml-->
+    <string name="app_name">Shopping List</string>
     <string name="settings">Settings</string>
     <string name="notes">Notes</string>
-    <string name="shop_list">Shop list</string>
+    <string name="shopping_list">Shopping list</string>
     <string name="new_item">New</string>
+
+    <!--activity_new_note.xml-->
     <string name="ed_title_hint">Title</string>
     <string name="et_description">Description</string>
 
-    <!--new_list_dialog-->
+    <!--new_list_dialog.xml-->
     <string name="new_list_name">New list name</string>
     <string name="list_name">List name</string>
     <string name="create_list">Create List</string>
     <string name="update_list">Update List</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--delete_dialog.xml-->
     <string name="you_want_to_delete_this_list">You want to delete this list?</string>
     <string name="delete_item">Delete item</string>
     <string name="btn_delete">Delete</string>
     <string name="btn_cancel">Cancel</string>
+
+    <!--shopping_list_menu.xml-->
+    <string name="delete_shopping_list">Delete List</string>
+    <string name="clear_shopping_list">Clear List</string>
+    <string name="share_shopping_list">Share List</string>
+    <string name="new_shopping_list">New Shopping List</string>
+    <string name="save_shopping_list">Save Shopping List</string>
+
+    <!--edit_action_layout.xml-->
+    <string name="new_list_item">New item</string>
+
+
 </resources>

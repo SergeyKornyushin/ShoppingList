@@ -12,6 +12,7 @@
     <color name="blue">#198AD5</color>
     <color name="blue_light">#BEE5FF</color>
     <color name="green_light">#DEFFF4</color>
+    <color name="gray_light">#ECECEC</color>
 
     <color name="picker_red">#BF2020</color>
     <color name="picker_green">#29BD42</color>
