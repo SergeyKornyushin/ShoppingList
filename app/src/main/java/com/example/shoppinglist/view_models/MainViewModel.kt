@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import com.example.shoppinglist.data_base.MainDatabase
 import com.example.shoppinglist.entities.NoteItem
 import com.example.shoppinglist.entities.ShoppingList
+import com.example.shoppinglist.entities.ShoppingListItem
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
 
@@ -25,9 +26,10 @@ class MainViewModel(database: MainDatabase) : ViewModel() {
         dao.updateNote(noteItem)
     }
     //-------------notes-------------------
+
     //-------------shopping_list-------------------
     fun insertShoppingList(listName: ShoppingList) = viewModelScope.launch {
-        dao.insertShopListItem(listName)
+        dao.insertShoppingList(listName)
     }
 
     fun deleteShoppingList(id: Int) = viewModelScope.launch {
@@ -38,9 +40,19 @@ class MainViewModel(database: MainDatabase) : ViewModel() {
         dao.updateShoppingList(shoppingList)
     }
     //-------------shopping_list-------------------
+
+    //-------------shopping_list_item-------------------
+    fun insertShoppingListItem(shoppingListItem: ShoppingListItem) = viewModelScope.launch {
+        dao.insertShoppingListItem(shoppingListItem)
+    }
+
+    fun getAllItemsFromList(listId: Int): LiveData<List<ShoppingListItem>> =
+        dao.getAllShoppingListItems(listId).asLiveData()
+    //-------------shopping_list_item-------------------
+
     class MainViewModelFactory(private val database: MainDatabase) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(MainViewModel::class.java)){
+            if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
                 return MainViewModel(database) as T
             }

@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "shop_list_item")
+@Entity(tableName = "shopping_list_item")
 data class ShoppingListItem(
     @PrimaryKey(autoGenerate = true)
     val id: Int?,
@@ -22,5 +22,5 @@ data class ShoppingListItem(
     val itemId: Int,
 
     @ColumnInfo(name = "item_type")
-    val itemType: String = "item"
+    val itemType: Int = 0
 )

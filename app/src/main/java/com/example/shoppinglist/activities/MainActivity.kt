@@ -8,7 +8,7 @@ import com.example.shoppinglist.databinding.ActivityMainBinding
 import com.example.shoppinglist.dialogs.NewListDialog
 import com.example.shoppinglist.fragments.FragmentManager
 import com.example.shoppinglist.fragments.NoteFragment
-import com.example.shoppinglist.fragments.ShopingListsFragment
+import com.example.shoppinglist.fragments.ShoppingListsFragment
 
 class MainActivity : AppCompatActivity(), NewListDialog.Listener {
     lateinit var binding: ActivityMainBinding
@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity(), NewListDialog.Listener {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        FragmentManager.setFragment(ShopingListsFragment.newInstance(), this)
+        FragmentManager.setFragment(ShoppingListsFragment.newInstance(), this)
         setBottomNavListener()
     }
 
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity(), NewListDialog.Listener {
                     FragmentManager.setFragment(NoteFragment.newInstance(), this)
                 }
                 R.id.shop_list -> {
-                    FragmentManager.setFragment(ShopingListsFragment.newInstance(), this)
+                    FragmentManager.setFragment(ShoppingListsFragment.newInstance(), this)
                 }
                 R.id.new_item -> {
                     FragmentManager.currentFrag?.onClickNew()

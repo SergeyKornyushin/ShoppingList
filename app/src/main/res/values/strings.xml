@@ -29,5 +29,8 @@
     <string name="new_shopping_list">New Shopping List</string>
     <string name="save_shopping_list">Save Shopping List</string>
 
+    <!--edit_action_layout.xml-->
+    <string name="new_list_item">New item</string>
+
 
 </resources>

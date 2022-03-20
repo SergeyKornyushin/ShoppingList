@@ -7,6 +7,7 @@ import androidx.room.Query
 import androidx.room.Update
 import com.example.shoppinglist.entities.NoteItem
 import com.example.shoppinglist.entities.ShoppingList
+import com.example.shoppinglist.entities.ShoppingListItem
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -24,7 +25,7 @@ interface Dao {
     suspend fun updateNote(noteItem: NoteItem)
 
     @Insert
-    suspend fun insertShopListItem(name: ShoppingList)
+    suspend fun insertShoppingList(name: ShoppingList)
 
     @Query("SELECT * FROM shopping_list")
     fun getAllShoppingLists(): Flow<List<ShoppingList>>
@@ -34,4 +35,10 @@ interface Dao {
 
     @Update
     suspend fun updateShoppingList(shoppingList: ShoppingList)
+
+    @Insert
+    suspend fun insertShoppingListItem(shoppingListItem: ShoppingListItem)
+
+    @Query("SELECT * FROM shopping_list_item WHERE list_id LIKE :listId")
+    fun getAllShoppingListItems(listId: Int): Flow<List<ShoppingListItem>>
 }
