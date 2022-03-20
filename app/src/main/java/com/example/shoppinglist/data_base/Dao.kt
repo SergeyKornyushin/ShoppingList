@@ -31,4 +31,7 @@ interface Dao {
 
     @Query("DELETE FROM shopping_list WHERE id IS :id")
     suspend fun deleteShoppingList(id: Int)
+
+    @Update
+    suspend fun updateShoppingList(shoppingList: ShoppingList)
 }

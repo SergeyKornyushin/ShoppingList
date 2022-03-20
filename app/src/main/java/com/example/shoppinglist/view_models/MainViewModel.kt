@@ -33,6 +33,10 @@ class MainViewModel(database: MainDatabase) : ViewModel() {
     fun deleteShoppingList(id: Int) = viewModelScope.launch {
         dao.deleteShoppingList(id)
     }
+
+    fun updateShoppingList(shoppingList: ShoppingList) = viewModelScope.launch {
+        dao.updateShoppingList(shoppingList)
+    }
     //-------------shopping_list-------------------
     class MainViewModelFactory(private val database: MainDatabase) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {

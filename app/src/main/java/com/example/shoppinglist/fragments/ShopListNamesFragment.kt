@@ -34,7 +34,7 @@ class ShopListNamesFragment : BaseFragment(), ShoppingListAdapter.Listener {
                     checkedItemsCounter = 0,
                     itemsId = ""))
             }
-        })
+        }, "")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,7 +71,16 @@ class ShopListNamesFragment : BaseFragment(), ShoppingListAdapter.Listener {
         })
     }
 
-    override fun onClickItem(noteItem: NoteItem) {
+    override fun editItem(shoppingList: ShoppingList) {
+        NewListDialog.showDialog(activity as AppCompatActivity, object : NewListDialog.Listener {
+            override fun onClick(name: String) {
+                mainViewModel.updateShoppingList(shoppingList.copy(listName = name))
+            }
+        }, shoppingList.listName)
+    }
 
+
+    override fun onClickItem(shoppingList: ShoppingList) {
+        TODO("Not yet implemented")
     }
 }
