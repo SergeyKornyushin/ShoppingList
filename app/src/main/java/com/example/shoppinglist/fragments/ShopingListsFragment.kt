@@ -1,5 +1,6 @@
 package com.example.shoppinglist.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,16 +8,16 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import com.example.shoppinglist.activities.MainApp
+import com.example.shoppinglist.activities.ShoppingListActivity
 import com.example.shoppinglist.databinding.FragmentShopListNamesBinding
 import com.example.shoppinglist.dialogs.DeleteDialog
 import com.example.shoppinglist.dialogs.NewListDialog
-import com.example.shoppinglist.entities.NoteItem
 import com.example.shoppinglist.entities.ShoppingList
 import com.example.shoppinglist.rv_adapter.ShoppingListAdapter
 import com.example.shoppinglist.utils.TimeManager.getCurrentTime
 import com.example.shoppinglist.view_models.MainViewModel
 
-class ShopListNamesFragment : BaseFragment(), ShoppingListAdapter.Listener {
+class ShopingListsFragment : BaseFragment(), ShoppingListAdapter.Listener {
     private lateinit var binding: FragmentShopListNamesBinding
 
     private val mainViewModel: MainViewModel by activityViewModels {
@@ -26,13 +27,16 @@ class ShopListNamesFragment : BaseFragment(), ShoppingListAdapter.Listener {
     override fun onClickNew() {
         NewListDialog.showDialog(activity as AppCompatActivity, object : NewListDialog.Listener {
             override fun onClick(name: String) {
-                mainViewModel.insertShoppingList(ShoppingList(
-                    id = null,
-                    listName = name,
-                    creationTime = getCurrentTime(),
-                    allItemCounter = 0,
-                    checkedItemsCounter = 0,
-                    itemsId = ""))
+                mainViewModel.insertShoppingList(
+                    ShoppingList(
+                        id = null,
+                        listName = name,
+                        creationTime = getCurrentTime(),
+                        allItemCounter = 0,
+                        checkedItemsCounter = 0,
+                        itemsId = ""
+                    )
+                )
             }
         }, "")
     }
@@ -60,11 +64,11 @@ class ShopListNamesFragment : BaseFragment(), ShoppingListAdapter.Listener {
 
     companion object {
         @JvmStatic
-        fun newInstance() = ShopListNamesFragment()
+        fun newInstance() = ShopingListsFragment()
     }
 
     override fun deleteItem(id: Int) {
-        DeleteDialog.showDialog(context as AppCompatActivity, object : DeleteDialog.Listener{
+        DeleteDialog.showDialog(context as AppCompatActivity, object : DeleteDialog.Listener {
             override fun onClick() {
                 mainViewModel.deleteShoppingList(id)
             }
@@ -81,6 +85,8 @@ class ShopListNamesFragment : BaseFragment(), ShoppingListAdapter.Listener {
 
 
     override fun onClickItem(shoppingList: ShoppingList) {
-        TODO("Not yet implemented")
+        startActivity(Intent(activity, ShoppingListActivity::class.java).apply {
+            putExtra(ShoppingListActivity.SHOPPING_LIST, shoppingList)
+        })
     }
 }
