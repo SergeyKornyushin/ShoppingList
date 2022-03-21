@@ -22,4 +22,8 @@
     <color name="picker_black">#1B1B1B</color>
     <color name="picker_yellow">#FFCD36</color>
     <color name="picker_orange">#FA8F1F</color>
+
+    <color name="progress_red">#D85353</color>
+    <color name="progress_yellow">#FFDE7F</color>
+    <color name="progress_green">#A4FDB3</color>
 </resources>

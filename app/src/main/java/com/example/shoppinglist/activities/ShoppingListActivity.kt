@@ -190,9 +190,7 @@ class ShoppingListActivity : AppCompatActivity(), ShoppingItemAdapter.Listener {
                         mainViewModel.updateShoppingListItem(shoppingListItem)
                     }
                 })
-
             CHECK_BOX -> mainViewModel.updateShoppingListItem(shoppingListItem)
-
             EDIT_LIBRARY_ITEM -> {
                 EditListDialog.showEditDialog(this, shoppingListItem,
                     object : EditListDialog.Listener {
@@ -217,5 +215,22 @@ class ShoppingListActivity : AppCompatActivity(), ShoppingItemAdapter.Listener {
                 addNewShoppingItem(shoppingListItem.itemName)
             }
         }
+    }
+
+    private fun saveItemCount() {
+        var checkedItemCounter = 0
+        adapter.currentList.forEach {
+            if (it.checkItem) checkedItemCounter++
+        }
+        val tempShoppingListItem = shoppingList?.copy(
+            allItemCounter = adapter.itemCount,
+            checkedItemsCounter = checkedItemCounter
+        )
+        mainViewModel.updateShoppingList(tempShoppingListItem!!)
+    }
+
+    override fun onBackPressed() {
+        saveItemCount()
+        super.onBackPressed()
     }
 }
