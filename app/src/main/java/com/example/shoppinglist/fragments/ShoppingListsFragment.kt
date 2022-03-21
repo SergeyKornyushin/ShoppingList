@@ -25,7 +25,7 @@ class ShoppingListsFragment : BaseFragment(), ShoppingListAdapter.Listener {
     }
 
     override fun onClickNew() {
-        NewListDialog.showDialog(activity as AppCompatActivity, object : NewListDialog.Listener {
+        NewListDialog.showCreationDialog(activity as AppCompatActivity, object : NewListDialog.Listener {
             override fun onClick(name: String) {
                 mainViewModel.insertShoppingList(
                     ShoppingList(
@@ -64,7 +64,7 @@ class ShoppingListsFragment : BaseFragment(), ShoppingListAdapter.Listener {
     }
 
     override fun deleteItem(id: Int) {
-        DeleteDialog.showDialog(context as AppCompatActivity, object : DeleteDialog.Listener {
+        DeleteDialog.showDeleteDialog(context as AppCompatActivity, object : DeleteDialog.Listener {
             override fun onClick() {
                 mainViewModel.deleteShoppingList(id)
             }
@@ -72,7 +72,7 @@ class ShoppingListsFragment : BaseFragment(), ShoppingListAdapter.Listener {
     }
 
     override fun editItem(shoppingList: ShoppingList) {
-        NewListDialog.showDialog(activity as AppCompatActivity, object : NewListDialog.Listener {
+        NewListDialog.showCreationDialog(activity as AppCompatActivity, object : NewListDialog.Listener {
             override fun onClick(name: String) {
                 mainViewModel.updateShoppingList(shoppingList.copy(listName = name))
             }

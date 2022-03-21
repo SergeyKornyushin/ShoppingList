@@ -1,8 +1,11 @@
 package com.example.shoppinglist.rv_adapter
 
+import android.content.Context
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +16,8 @@ import com.example.shoppinglist.entities.NoteItem
 import com.example.shoppinglist.entities.ShoppingList
 import com.example.shoppinglist.utils.HtmlManager
 
-class ShoppingListAdapter(private val listener:Listener) : ListAdapter<ShoppingList, ShoppingListAdapter.ItemHolder>(ItemComparator()) {
+class ShoppingListAdapter(private val listener: Listener) :
+    ListAdapter<ShoppingList, ShoppingListAdapter.ItemHolder>(ItemComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder =
         ItemHolder.create(parent)
@@ -29,7 +33,7 @@ class ShoppingListAdapter(private val listener:Listener) : ListAdapter<ShoppingL
             with(binding) {
                 tvListTitle.text = shoppingList.listName
                 tvCreationTime.text = shoppingList.creationTime
-
+                tvCount.text = "${shoppingList.checkedItemsCounter}/${shoppingList.allItemCounter}"
                 itemView.setOnClickListener {
                     listener.onClickItem(shoppingList)
                 }
@@ -39,7 +43,29 @@ class ShoppingListAdapter(private val listener:Listener) : ListAdapter<ShoppingL
                 ibtnEditShoppingItem.setOnClickListener {
                     listener.editItem(shoppingList)
                 }
+                pbShopList.max = shoppingList.allItemCounter
+                pbShopList.progress = shoppingList.checkedItemsCounter
+                pbShopList.progressTintList = ColorStateList.valueOf(
+                    getProgressStateColor(
+                        shoppingList,
+                        binding.root.context
+                    )
+                )
             }
+
+        private fun getProgressStateColor(shoppingList: ShoppingList, context: Context): Int {
+            return when {
+                shoppingList.checkedItemsCounter == shoppingList.allItemCounter -> {
+                    ContextCompat.getColor(context, R.color.progress_green)
+                }
+                shoppingList.allItemCounter > shoppingList.checkedItemsCounter * 2 -> {
+                    ContextCompat.getColor(context, R.color.progress_red)
+                }
+                else -> {
+                    ContextCompat.getColor(context, R.color.progress_yellow)
+                }
+            }
+        }
 
         companion object {
             fun create(parent: ViewGroup): ItemHolder = ItemHolder(
@@ -58,7 +84,7 @@ class ShoppingListAdapter(private val listener:Listener) : ListAdapter<ShoppingL
             oldItem == newItem
     }
 
-    interface Listener{
+    interface Listener {
         fun deleteItem(id: Int)
         fun editItem(shoppingList: ShoppingList)
         fun onClickItem(shoppingList: ShoppingList)

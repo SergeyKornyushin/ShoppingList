@@ -42,6 +42,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="6dp"
         app:cardCornerRadius="8dp"
+        android:backgroundTint="@color/green_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,15 +51,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/green_light"
             android:orientation="vertical"
+            android:layout_marginStart="6dp"
             android:padding="5dp">
 
             <TextView
                 android:id="@+id/tv_list_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                tools:text="TextView"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -67,7 +68,7 @@
                 android:id="@+id/tv_creation_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                tools:text="TextView"
                 android:textSize="12sp" />
 
             <ProgressBar
@@ -79,6 +80,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cv_counter"
         android:layout_width="35dp"
         android:layout_height="25dp"
         android:layout_marginEnd="10dp"
@@ -94,10 +96,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:text="0/0"
             android:textColor="@color/white"
             android:textSize="14sp"
-            tools:text="0/0"
-            android:text="0/0"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            tools:text="0/0" />
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

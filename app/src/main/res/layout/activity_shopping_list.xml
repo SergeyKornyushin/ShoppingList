@@ -7,6 +7,20 @@
     android:background="@color/gray_light"
     tools:context=".activities.ShoppingListActivity">
 
+    <TextView
+        android:id="@+id/tv_shopping_list_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.3"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/shopping_list_empty"
+        android:textColor="@color/black"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_shopping_list"
         android:layout_width="0dp"

@@ -13,10 +13,10 @@ data class ShoppingListItem(
     val itemName: String,
 
     @ColumnInfo(name = "item_info")
-    val itemInfo: String?,
+    val itemInfo: String = "",
 
     @ColumnInfo(name = "item_checked")
-    val checkItem: Int = 0,
+    val checkItem: Boolean = false,
 
     @ColumnInfo(name = "list_id")
     val itemId: Int,

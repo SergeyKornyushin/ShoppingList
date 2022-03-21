@@ -8,7 +8,7 @@ import com.example.shoppinglist.databinding.DeleteDialogBinding
 import com.example.shoppinglist.databinding.NewListDialogBinding
 
 object DeleteDialog {
-    fun showDialog(context: Context, listener: Listener) {
+    fun showDeleteDialog(context: Context, listener: Listener) {
         var dialog: AlertDialog? = null
         val builder = AlertDialog.Builder(context)
         val binding = DeleteDialogBinding.inflate(LayoutInflater.from(context))
