@@ -44,4 +44,7 @@ interface Dao {
 
     @Update
     suspend fun updateShoppingListItem(shoppingListItem: ShoppingListItem)
+
+    @Query("DELETE FROM shopping_list_item WHERE list_id LIKE :listId")
+    suspend fun deleteShoppingItemsByParentListId(listId: Int)
 }

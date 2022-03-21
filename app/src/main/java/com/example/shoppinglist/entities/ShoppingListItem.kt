@@ -13,7 +13,7 @@ data class ShoppingListItem(
     val itemName: String,
 
     @ColumnInfo(name = "item_info")
-    val itemInfo: String?,
+    val itemInfo: String = "",
 
     @ColumnInfo(name = "item_checked")
     val checkItem: Boolean = false,

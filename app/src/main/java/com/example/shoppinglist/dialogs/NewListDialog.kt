@@ -8,17 +8,17 @@ import com.example.shoppinglist.R
 import com.example.shoppinglist.databinding.NewListDialogBinding
 
 object NewListDialog {
-    fun showDialog(context: Context, listener: Listener, name: String) {
+    fun showCreationDialog(context: Context, listener: Listener, name: String) {
         var dialog: AlertDialog? = null
         val builder = AlertDialog.Builder(context)
         val binding = NewListDialogBinding.inflate(LayoutInflater.from(context))
         builder.setView(binding.root)
         binding.apply {
-            etNewListName.setText(name)
-            if (name.isNotEmpty()) binding.dtnCreateList.text = context.getText(R.string.update_list)
-            dtnCreateList.setOnClickListener {
-                if (etNewListName.text.isNotEmpty()) {
-                    listener.onClick(etNewListName.text.toString())
+            etEditListName.setText(name)
+            if (name.isNotEmpty()) binding.btnEditShoppingList.text = context.getText(R.string.update_list)
+            btnEditShoppingList.setOnClickListener {
+                if (etEditListName.text.isNotEmpty()) {
+                    listener.onClick(etEditListName.text.toString())
                 }
                 dialog?.dismiss()
             }

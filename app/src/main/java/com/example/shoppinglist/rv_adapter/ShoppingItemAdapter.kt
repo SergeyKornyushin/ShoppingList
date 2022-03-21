@@ -47,7 +47,10 @@ class ShoppingItemAdapter(private val listener: Listener) :
                 checkBoxItem.isChecked = shoppingListItem.checkItem
                 setPainFlagAndColor(binding)
                 checkBoxItem.setOnClickListener {
-                    listener.onClickItem(shoppingListItem.copy(checkItem = checkBoxItem.isChecked))
+                    listener.onClickItem(shoppingListItem.copy(checkItem = checkBoxItem.isChecked), CHECK_BOX)
+                }
+                ibtnEditItem.setOnClickListener {
+                    listener.onClickItem(shoppingListItem, EDIT)
                 }
             }
         }
@@ -108,6 +111,11 @@ class ShoppingItemAdapter(private val listener: Listener) :
     }
 
     interface Listener {
-        fun onClickItem(shoppingListItem: ShoppingListItem)
+        fun onClickItem(shoppingListItem: ShoppingListItem, action: String)
+    }
+
+    companion object{
+        const val EDIT = "edit"
+        const val CHECK_BOX = "check_box"
     }
 }

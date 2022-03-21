@@ -1,6 +1,6 @@
 package com.example.shoppinglist.activities
 
-import android.graphics.Paint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -10,14 +10,18 @@ import android.widget.EditText
 import androidx.activity.viewModels
 import com.example.shoppinglist.R
 import com.example.shoppinglist.databinding.ActivityShoppingListBinding
-import com.example.shoppinglist.databinding.ShoppingListItemBinding
+import com.example.shoppinglist.dialogs.EditListDialog
 import com.example.shoppinglist.entities.ShoppingList
 import com.example.shoppinglist.entities.ShoppingListItem
 import com.example.shoppinglist.rv_adapter.ShoppingItemAdapter
+import com.example.shoppinglist.rv_adapter.ShoppingItemAdapter.Companion.EDIT
+import com.example.shoppinglist.utils.ShareHelper
 import com.example.shoppinglist.view_models.MainViewModel
+import kotlinx.coroutines.coroutineScope
 
 class ShoppingListActivity : AppCompatActivity(), ShoppingItemAdapter.Listener {
     private lateinit var binding: ActivityShoppingListBinding
+    private lateinit var adapter: ShoppingItemAdapter
     private var shoppingList: ShoppingList? = null
     private lateinit var saveMenuButton: MenuItem
     private var editTextNewShoppingItem: EditText? = null
@@ -32,7 +36,7 @@ class ShoppingListActivity : AppCompatActivity(), ShoppingItemAdapter.Listener {
 
         shoppingList = intent.getSerializableExtra(SHOPPING_LIST) as ShoppingList
 
-        val adapter = ShoppingItemAdapter(this)
+        adapter = ShoppingItemAdapter(this)
         binding.rvShoppingList.adapter = adapter
 
         mainViewModel.getAllItemsFromList(shoppingList?.id!!).observe(this) {
@@ -52,8 +56,26 @@ class ShoppingListActivity : AppCompatActivity(), ShoppingItemAdapter.Listener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.save_shopping_list) {
-            addNewShoppingItem()
+        when (item.itemId) {
+            R.id.save_shopping_list -> addNewShoppingItem()
+
+            R.id.delete_shopping_list -> {
+                mainViewModel.deleteShoppingList(shoppingList?.id!!)
+                finish()
+            }
+
+            R.id.clear_shopping_list -> mainViewModel.clearShoppingList(shoppingList!!)
+
+            R.id.share_shopping_list ->
+                startActivity(
+                    Intent.createChooser(
+                        ShareHelper.shareShoppingList(
+                            adapter.currentList,
+                            shoppingList?.listName!!
+                        ), "Share by"
+                    )
+                )
+
         }
         return super.onOptionsItemSelected(item)
     }
@@ -63,7 +85,7 @@ class ShoppingListActivity : AppCompatActivity(), ShoppingItemAdapter.Listener {
             val shoppingListItem = ShoppingListItem(
                 id = null,
                 itemName = editTextNewShoppingItem?.text.toString(),
-                itemInfo = null,
+                itemInfo = "",
                 checkItem = false,
                 itemId = shoppingList?.id!!,
                 itemType = 0
@@ -93,7 +115,16 @@ class ShoppingListActivity : AppCompatActivity(), ShoppingItemAdapter.Listener {
         const val SHOPPING_LIST = "shopping_list"
     }
 
-    override fun onClickItem(shoppingListItem: ShoppingListItem) {
-        mainViewModel.updateShoppingListItem(shoppingListItem)
+    override fun onClickItem(shoppingListItem: ShoppingListItem, action: String) {
+        if (action == EDIT) {
+            EditListDialog.showEditDialog(this, shoppingListItem, object : EditListDialog.Listener {
+                override fun onClick(shoppingListItem: ShoppingListItem) {
+                    mainViewModel.updateShoppingListItem(shoppingListItem)
+                }
+            })
+        } else {
+            mainViewModel.updateShoppingListItem(shoppingListItem)
+        }
+
     }
 }

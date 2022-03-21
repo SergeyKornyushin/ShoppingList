@@ -5,6 +5,7 @@ import com.example.shoppinglist.data_base.MainDatabase
 import com.example.shoppinglist.entities.NoteItem
 import com.example.shoppinglist.entities.ShoppingList
 import com.example.shoppinglist.entities.ShoppingListItem
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
 
@@ -34,6 +35,7 @@ class MainViewModel(database: MainDatabase) : ViewModel() {
 
     fun deleteShoppingList(id: Int) = viewModelScope.launch {
         dao.deleteShoppingList(id)
+        dao.deleteShoppingItemsByParentListId(id)
     }
 
     fun updateShoppingList(shoppingList: ShoppingList) = viewModelScope.launch {
@@ -51,6 +53,10 @@ class MainViewModel(database: MainDatabase) : ViewModel() {
 
     fun updateShoppingListItem(shoppingListItem: ShoppingListItem) = viewModelScope.launch {
         dao.updateShoppingListItem(shoppingListItem)
+    }
+
+    fun clearShoppingList(shoppingList: ShoppingList) = viewModelScope.launch {
+        dao.deleteShoppingItemsByParentListId(shoppingList.id!!)
     }
     //-------------shopping_list_item-------------------
 
