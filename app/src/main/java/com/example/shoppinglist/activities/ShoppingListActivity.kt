@@ -3,6 +3,9 @@ package com.example.shoppinglist.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -17,7 +20,6 @@ import com.example.shoppinglist.rv_adapter.ShoppingItemAdapter
 import com.example.shoppinglist.rv_adapter.ShoppingItemAdapter.Companion.EDIT
 import com.example.shoppinglist.utils.ShareHelper
 import com.example.shoppinglist.view_models.MainViewModel
-import kotlinx.coroutines.coroutineScope
 
 class ShoppingListActivity : AppCompatActivity(), ShoppingItemAdapter.Listener {
     private lateinit var binding: ActivityShoppingListBinding
@@ -25,6 +27,7 @@ class ShoppingListActivity : AppCompatActivity(), ShoppingItemAdapter.Listener {
     private var shoppingList: ShoppingList? = null
     private lateinit var saveMenuButton: MenuItem
     private var editTextNewShoppingItem: EditText? = null
+    private  lateinit var textWatcher: TextWatcher
     private val mainViewModel: MainViewModel by viewModels {
         MainViewModel.MainViewModelFactory((applicationContext as MainApp).database)
     }
@@ -52,6 +55,8 @@ class ShoppingListActivity : AppCompatActivity(), ShoppingItemAdapter.Listener {
             .setOnActionExpandListener(expandActionView())
         editTextNewShoppingItem = newMenuButton.actionView
             .findViewById(R.id.et_new_shopping_item) as EditText
+
+        textWatcher = getTextWatcher()
         return true
     }
 
@@ -80,6 +85,23 @@ class ShoppingListActivity : AppCompatActivity(), ShoppingItemAdapter.Listener {
         return super.onOptionsItemSelected(item)
     }
 
+    private fun getTextWatcher():TextWatcher{
+        return object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                Log.i("test4", "onTextChanged: $s")
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+        }
+    }
+
     private fun addNewShoppingItem() {
         if (editTextNewShoppingItem?.text.toString().isNotEmpty()) {
             val shoppingListItem = ShoppingListItem(
@@ -99,11 +121,13 @@ class ShoppingListActivity : AppCompatActivity(), ShoppingItemAdapter.Listener {
         return object : MenuItem.OnActionExpandListener {
             override fun onMenuItemActionExpand(p0: MenuItem?): Boolean {
                 saveMenuButton.isVisible = true
+                editTextNewShoppingItem?.addTextChangedListener(textWatcher)
                 return true
             }
 
             override fun onMenuItemActionCollapse(p0: MenuItem?): Boolean {
                 saveMenuButton.isVisible = false
+                editTextNewShoppingItem?.removeTextChangedListener(textWatcher)
                 invalidateOptionsMenu()
                 return true
             }
