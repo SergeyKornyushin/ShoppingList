@@ -48,6 +48,10 @@ class ShoppingListActivity : AppCompatActivity(), ShoppingItemAdapter.Listener {
         }
     }
 
+    private fun libraryItemObserver(){
+
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.shopping_list_menu, menu)
         saveMenuButton = menu?.findItem(R.id.save_shopping_list)!!

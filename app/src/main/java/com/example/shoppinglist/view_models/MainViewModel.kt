@@ -2,10 +2,10 @@ package com.example.shoppinglist.view_models
 
 import androidx.lifecycle.*
 import com.example.shoppinglist.data_base.MainDatabase
+import com.example.shoppinglist.entities.LibraryItem
 import com.example.shoppinglist.entities.NoteItem
 import com.example.shoppinglist.entities.ShoppingList
 import com.example.shoppinglist.entities.ShoppingListItem
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
 
@@ -46,6 +46,12 @@ class MainViewModel(database: MainDatabase) : ViewModel() {
     //-------------shopping_list_item-------------------
     fun insertShoppingListItem(shoppingListItem: ShoppingListItem) = viewModelScope.launch {
         dao.insertShoppingListItem(shoppingListItem)
+        if (isLibraryItemNotExist(shoppingListItem.itemName)) dao.insertLibraryItem(
+            LibraryItem(
+                null,
+                shoppingListItem.itemName
+            )
+        )
     }
 
     fun getAllItemsFromList(listId: Int): LiveData<List<ShoppingListItem>> =
@@ -60,6 +66,12 @@ class MainViewModel(database: MainDatabase) : ViewModel() {
     }
     //-------------shopping_list_item-------------------
 
+    //-------------library-------------------
+    private suspend fun isLibraryItemNotExist(item: String): Boolean {
+        return dao.getAllLibraryItems(item).isEmpty()
+    }
+
+    //-------------library-------------------
     class MainViewModelFactory(private val database: MainDatabase) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
