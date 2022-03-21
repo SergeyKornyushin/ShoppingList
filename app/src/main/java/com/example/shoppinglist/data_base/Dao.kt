@@ -55,4 +55,10 @@ interface Dao {
 
     @Insert
     suspend fun insertLibraryItem(libraryItem: LibraryItem)
+
+    @Update
+    suspend fun updateLibraryItem(libraryItem: LibraryItem)
+
+    @Query("DELETE FROM library WHERE id IS :id")
+    suspend fun deleteLibraryItem(id: Int)
 }

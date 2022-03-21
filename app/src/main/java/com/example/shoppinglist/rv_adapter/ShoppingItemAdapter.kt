@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppinglist.R
+import com.example.shoppinglist.databinding.LibraryListItemBinding
 import com.example.shoppinglist.databinding.ListNameRvItemBinding
 import com.example.shoppinglist.databinding.NoteRvItemBinding
 import com.example.shoppinglist.databinding.ShoppingListItemBinding
@@ -38,7 +39,7 @@ class ShoppingItemAdapter(private val listener: Listener) :
             val binding = ShoppingListItemBinding.bind(view)
             binding.apply {
                 tvListItemTitle.text = shoppingListItem.itemName
-                if (shoppingListItem.itemInfo.isNullOrEmpty())
+                if (shoppingListItem.itemInfo.isEmpty())
                     tvListItemDescription.visibility = View.GONE
                 else {
                     tvListItemDescription.visibility = View.VISIBLE
@@ -53,6 +54,23 @@ class ShoppingItemAdapter(private val listener: Listener) :
                     listener.onClickItem(shoppingListItem, EDIT)
                 }
             }
+        }
+
+        fun setLibraryData(shoppingListItem: ShoppingListItem, listener: Listener) {
+            val binding = LibraryListItemBinding.bind(view)
+            binding.apply {
+                tvLibraryItemTitle.text = shoppingListItem.itemName
+                ibtnDeleteLibraryItem.setOnClickListener {
+                    listener.onClickItem(shoppingListItem, DELETE_LIBRARY_ITEM)
+                }
+                ibtnEditLibraryItem.setOnClickListener {
+                    listener.onClickItem(shoppingListItem, EDIT_LIBRARY_ITEM)
+                }
+                itemView.setOnClickListener {
+                    listener.onClickItem(shoppingListItem, ADD_LIBRARY_ITEM)
+                }
+            }
+
         }
 
         private fun setPainFlagAndColor(binding: ShoppingListItemBinding) {
@@ -77,10 +95,6 @@ class ShoppingItemAdapter(private val listener: Listener) :
                     )
                 }
             }
-        }
-
-        fun setLibraryData(shoppingListItem: ShoppingListItem, listener: Listener) {
-
         }
 
         companion object {
@@ -117,5 +131,8 @@ class ShoppingItemAdapter(private val listener: Listener) :
     companion object{
         const val EDIT = "edit"
         const val CHECK_BOX = "check_box"
+        const val EDIT_LIBRARY_ITEM = "edit_library_item"
+        const val DELETE_LIBRARY_ITEM = "delete_library_item"
+        const val ADD_LIBRARY_ITEM = "add_library_item"
     }
 }

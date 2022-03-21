@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
+import android.view.View
 import com.example.shoppinglist.R
 import com.example.shoppinglist.databinding.EditShoppingListDialogBinding
 import com.example.shoppinglist.databinding.NewListDialogBinding
@@ -17,9 +18,14 @@ object EditListDialog {
         builder.setView(binding.root)
         binding.apply {
             etEditListName.setText(shoppingListItem.itemName)
-            etEditListInfo.setText(shoppingListItem.itemInfo)
+
+            if (shoppingListItem.itemType == 1) etEditListInfo.visibility = View.GONE
+            else {
+                etEditListInfo.visibility = View.VISIBLE
+                etEditListInfo.setText(shoppingListItem.itemInfo)
+            }
+
             btnEditShoppingList.setOnClickListener {
-//                if (!etEditListInfo.text.isNullOrEmpty()) {
                 if (etEditListName.text.length > 50) {
                     etEditListName.error = "50 symbols max"
                     return@setOnClickListener
@@ -35,7 +41,6 @@ object EditListDialog {
                     )
                 )
                 dialog?.dismiss()
-//                }
             }
         }
         dialog = builder.create()

@@ -10,9 +10,10 @@ import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
 
 class MainViewModel(database: MainDatabase) : ViewModel() {
-    val dao = database.getDao()
+    private val dao = database.getDao()
     val allNotes: LiveData<List<NoteItem>> = dao.getAllNotes().asLiveData()
     val allShoppingLists: LiveData<List<ShoppingList>> = dao.getAllShoppingLists().asLiveData()
+    val libraryItems = MutableLiveData<List<LibraryItem>>()
 
     //-------------notes-------------------
     fun insertNote(noteItem: NoteItem) = viewModelScope.launch {
@@ -70,7 +71,15 @@ class MainViewModel(database: MainDatabase) : ViewModel() {
     private suspend fun isLibraryItemNotExist(item: String): Boolean {
         return dao.getAllLibraryItems(item).isEmpty()
     }
-
+    fun getAllLibraryItems(name: String) = viewModelScope.launch{
+        libraryItems.postValue(dao.getAllLibraryItems(name))
+    }
+    fun updateLibraryItem(libraryItem: LibraryItem) = viewModelScope.launch {
+        dao.updateLibraryItem(libraryItem)
+    }
+    fun deleteLibraryItem(id: Int) = viewModelScope.launch {
+        dao.deleteLibraryItem(id)
+    }
     //-------------library-------------------
     class MainViewModelFactory(private val database: MainDatabase) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
