@@ -1,5 +1,6 @@
 package com.example.shoppinglist.activities
 
+import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -9,6 +10,7 @@ import android.widget.EditText
 import androidx.activity.viewModels
 import com.example.shoppinglist.R
 import com.example.shoppinglist.databinding.ActivityShoppingListBinding
+import com.example.shoppinglist.databinding.ShoppingListItemBinding
 import com.example.shoppinglist.entities.ShoppingList
 import com.example.shoppinglist.entities.ShoppingListItem
 import com.example.shoppinglist.rv_adapter.ShoppingItemAdapter
@@ -62,7 +64,7 @@ class ShoppingListActivity : AppCompatActivity(), ShoppingItemAdapter.Listener {
                 id = null,
                 itemName = editTextNewShoppingItem?.text.toString(),
                 itemInfo = null,
-                checkItem = 0,
+                checkItem = false,
                 itemId = shoppingList?.id!!,
                 itemType = 0
             )
@@ -91,15 +93,7 @@ class ShoppingListActivity : AppCompatActivity(), ShoppingItemAdapter.Listener {
         const val SHOPPING_LIST = "shopping_list"
     }
 
-    override fun deleteItem(id: Int) {
-
-    }
-
-    override fun editItem(shoppingList: ShoppingList) {
-
-    }
-
-    override fun onClickItem(shoppingList: ShoppingList) {
-
+    override fun onClickItem(shoppingListItem: ShoppingListItem) {
+        mainViewModel.updateShoppingListItem(shoppingListItem)
     }
 }

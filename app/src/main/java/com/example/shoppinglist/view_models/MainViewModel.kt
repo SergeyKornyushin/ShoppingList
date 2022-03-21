@@ -48,6 +48,10 @@ class MainViewModel(database: MainDatabase) : ViewModel() {
 
     fun getAllItemsFromList(listId: Int): LiveData<List<ShoppingListItem>> =
         dao.getAllShoppingListItems(listId).asLiveData()
+
+    fun updateShoppingListItem(shoppingListItem: ShoppingListItem) = viewModelScope.launch {
+        dao.updateShoppingListItem(shoppingListItem)
+    }
     //-------------shopping_list_item-------------------
 
     class MainViewModelFactory(private val database: MainDatabase) : ViewModelProvider.Factory {

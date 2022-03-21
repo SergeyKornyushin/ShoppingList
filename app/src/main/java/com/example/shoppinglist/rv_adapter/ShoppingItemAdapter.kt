@@ -1,8 +1,10 @@
 package com.example.shoppinglist.rv_adapter
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -42,7 +44,35 @@ class ShoppingItemAdapter(private val listener: Listener) :
                     tvListItemDescription.visibility = View.VISIBLE
                     tvListItemDescription.text = shoppingListItem.itemInfo
                 }
+                checkBoxItem.isChecked = shoppingListItem.checkItem
+                setPainFlagAndColor(binding)
+                checkBoxItem.setOnClickListener {
+                    listener.onClickItem(shoppingListItem.copy(checkItem = checkBoxItem.isChecked))
+                }
+            }
+        }
 
+        private fun setPainFlagAndColor(binding: ShoppingListItemBinding) {
+            binding.apply {
+                if (checkBoxItem.isChecked) {
+                    tvListItemTitle.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+                    tvListItemDescription.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+                    tvListItemTitle.setTextColor(
+                        ContextCompat.getColor(
+                            binding.root.context,
+                            R.color.gray
+                        )
+                    )
+                } else {
+                    tvListItemTitle.paintFlags = Paint.ANTI_ALIAS_FLAG
+                    tvListItemDescription.paintFlags = Paint.ANTI_ALIAS_FLAG
+                    tvListItemTitle.setTextColor(
+                        ContextCompat.getColor(
+                            binding.root.context,
+                            R.color.black_light
+                        )
+                    )
+                }
             }
         }
 
@@ -78,8 +108,6 @@ class ShoppingItemAdapter(private val listener: Listener) :
     }
 
     interface Listener {
-        fun deleteItem(id: Int)
-        fun editItem(shoppingList: ShoppingList)
-        fun onClickItem(shoppingList: ShoppingList)
+        fun onClickItem(shoppingListItem: ShoppingListItem)
     }
 }

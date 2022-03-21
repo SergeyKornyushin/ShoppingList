@@ -6,6 +6,7 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
+    <color name="black_light">#2B2B2B</color>
     <color name="white">#FFFFFFFF</color>
     <color name="green_main">#4BCF62</color>
     <color name="red_light">#CF4A4A</color>
@@ -13,6 +14,7 @@
     <color name="blue_light">#BEE5FF</color>
     <color name="green_light">#DEFFF4</color>
     <color name="gray_light">#ECECEC</color>
+    <color name="gray">#787878</color>
 
     <color name="picker_red">#BF2020</color>
     <color name="picker_green">#29BD42</color>

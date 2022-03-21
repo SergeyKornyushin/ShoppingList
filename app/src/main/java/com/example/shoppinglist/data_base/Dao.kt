@@ -41,4 +41,7 @@ interface Dao {
 
     @Query("SELECT * FROM shopping_list_item WHERE list_id LIKE :listId")
     fun getAllShoppingListItems(listId: Int): Flow<List<ShoppingListItem>>
+
+    @Update
+    suspend fun updateShoppingListItem(shoppingListItem: ShoppingListItem)
 }
