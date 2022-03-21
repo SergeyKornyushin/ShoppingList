@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.EditText
 import androidx.activity.viewModels
 import com.example.shoppinglist.R
@@ -34,6 +35,7 @@ class ShoppingListActivity : AppCompatActivity(), ShoppingItemAdapter.Listener {
 
         mainViewModel.getAllItemsFromList(shoppingList?.id!!).observe(this) {
             adapter.submitList(it)
+            binding.tvShoppingListEmpty.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
         }
     }
 

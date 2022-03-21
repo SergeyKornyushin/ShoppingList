@@ -32,5 +32,8 @@
     <!--edit_action_layout.xml-->
     <string name="new_list_item">New item</string>
 
+    <!--activity_shopping_list.xml-->
+    <string name="shopping_list_empty">Empty</string>
+
 
 </resources>

@@ -23,7 +23,7 @@ class ShoppingItemAdapter(private val listener: Listener) :
         else ItemHolder.createLibraryItem(parent)
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        if(getItem(position).itemType == 0) holder.setItemData(getItem(position), listener)
+        if (getItem(position).itemType == 0) holder.setItemData(getItem(position), listener)
         else holder.setLibraryData(getItem(position), listener)
     }
 
@@ -36,6 +36,13 @@ class ShoppingItemAdapter(private val listener: Listener) :
             val binding = ShoppingListItemBinding.bind(view)
             binding.apply {
                 tvListItemTitle.text = shoppingListItem.itemName
+                if (shoppingListItem.itemInfo.isNullOrEmpty())
+                    tvListItemDescription.visibility = View.GONE
+                else {
+                    tvListItemDescription.visibility = View.VISIBLE
+                    tvListItemDescription.text = shoppingListItem.itemInfo
+                }
+
             }
         }
 
@@ -63,7 +70,10 @@ class ShoppingItemAdapter(private val listener: Listener) :
         ): Boolean =
             oldItem.id == newItem.id
 
-        override fun areContentsTheSame(oldItem: ShoppingListItem, newItem: ShoppingListItem): Boolean =
+        override fun areContentsTheSame(
+            oldItem: ShoppingListItem,
+            newItem: ShoppingListItem
+        ): Boolean =
             oldItem == newItem
     }
 
