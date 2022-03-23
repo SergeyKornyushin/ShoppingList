@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="note_styles_array">
+        <item>Linear</item>
+        <item>Grid</item>
+    </string-array>
+    <string-array name="note_styles_values">
+        <item>Linear</item>
+        <item>Grid</item>
+    </string-array>
+
+    <string-array name="time_format_array">
+        <item>USA</item>
+        <item>EU</item>
+    </string-array>
+    <string-array name="time_format_values">
+        <item>hh:mm a - MM.dd.yyyy</item>
+        <item>HH:mm - dd.MM.yyyy</item>
+    </string-array>
+
+    <string-array name="theme_array">
+        <item>Blue</item>
+        <item>Green</item>
+        <item>Orange</item>
+    </string-array>
+    <string-array name="theme_values">
+        <item>Blue</item>
+        <item>Green</item>
+        <item>Orange</item>
+    </string-array>
+
+    <string-array name="note_title_size_array">
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
+    </string-array>
+    <string-array name="note_title_size_values">
+        <item>14</item>
+        <item>18</item>
+        <item>26</item>
+    </string-array>
+
+    <string-array name="note_content_size_array">
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
+    </string-array>
+    <string-array name="note_content_size_values">
+        <item>10</item>
+        <item>16</item>
+        <item>22</item>
+    </string-array>
+</resources>

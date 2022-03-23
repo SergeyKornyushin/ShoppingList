@@ -5,7 +5,7 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
+    <color name="black">#000000</color>
     <color name="black_light">#2B2B2B</color>
     <color name="white">#FFFFFFFF</color>
     <color name="green_main">#4BCF62</color>
@@ -26,4 +26,18 @@
     <color name="progress_red">#D85353</color>
     <color name="progress_yellow">#FFDE7F</color>
     <color name="progress_green">#A4FDB3</color>
+
+<!--Themes-->
+    <color name="theme_blue_gray_primary">#26343A</color>
+    <color name="theme_blue_gray_light">#62727b</color>
+    <color name="theme_blue_gray_dark">#102027</color>
+    <color name="theme_blue_gray_white">#8FA9CF</color>
+
+    <color name="theme_orange_primary">#fb8c00</color>
+    <color name="theme_orange_light">#ffbd45</color>
+    <color name="theme_orange_dark">#c25e00</color>
+
+    <color name="theme_gray_primary">#e0e0e0</color>
+    <color name="theme_gray_light">#ffffff</color>
+    <color name="theme_gray_dark">#aeaeae</color>
 </resources>

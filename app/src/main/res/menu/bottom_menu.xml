@@ -12,7 +12,7 @@
         android:icon="@drawable/ic_bottom_note"
         app:showAsAction="ifRoom"/>
 
-    <item android:id="@+id/shop_list"
+    <item android:id="@+id/shopping_list"
         android:title="@string/shopping_list"
         android:icon="@drawable/ic_bottom_list"
         app:showAsAction="ifRoom"/>

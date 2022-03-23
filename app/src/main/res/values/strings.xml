@@ -39,5 +39,19 @@
     <string name="list_info">List info</string>
     <string name="update_list_item">Update</string>
 
+    <!--settings_preference.xml-->
+    <string name="general">General</string>
+    <string name="chose_note_style">Chose note style</string>
+    <string name="chose_time_format">Chose time format</string>
+    <string name="theme_style">Theme settings</string>
+    <string name="chose_theme">Chose theme</string>
+    <string name="note_text_settings">Note text settings</string>
+    <string name="title_text_settings">Title text size</string>
+    <string name="content_text_settings">Content text size</string>
+
+    <!--settings_preference.xml______KEYS-->
+    <string name="default_note_title_size">18</string>
+    <string name="default_note_content_size">16</string>
+
 
 </resources>
