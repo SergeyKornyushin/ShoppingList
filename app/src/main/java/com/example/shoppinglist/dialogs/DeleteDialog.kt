@@ -4,14 +4,13 @@ import android.app.AlertDialog
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
-import com.example.shoppinglist.databinding.DeleteDialogBinding
-import com.example.shoppinglist.databinding.NewListDialogBinding
+import com.example.shoppinglist.databinding.DialogDeleteBinding
 
 object DeleteDialog {
     fun showDeleteDialog(context: Context, listener: Listener) {
         var dialog: AlertDialog? = null
         val builder = AlertDialog.Builder(context)
-        val binding = DeleteDialogBinding.inflate(LayoutInflater.from(context))
+        val binding = DialogDeleteBinding.inflate(LayoutInflater.from(context))
         builder.setView(binding.root)
         binding.apply {
             dtnDeleteList.setOnClickListener {

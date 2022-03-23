@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_layer_border_background"
+    android:backgroundTint="@null"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/tv_shopping_list_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="@string/new_list_name"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/et_edit_list_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="7dp"
+        android:background="@drawable/edittext_layer_border_background"
+        android:backgroundTint="@null"
+        android:ems="10"
+        android:hint="@string/list_name"
+        android:textColor="?attr/buttonTextColor"
+        android:inputType="textPersonName"
+        android:padding="8dp"
+        app:backgroundTint="@null" />
+
+    <EditText
+        android:id="@+id/et_edit_list_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/edittext_layer_border_background"
+        android:backgroundTint="@null"
+        android:ems="10"
+        android:hint="@string/list_info"
+        android:textColor="?attr/buttonTextColor"
+        android:inputType="textMultiLine"
+        android:padding="8dp"
+        app:backgroundTint="@null" />
+
+    <Button
+        android:id="@+id/btn_edit_shopping_list"
+        android:paddingStart="50dp"
+        android:paddingEnd="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="3dp"
+        android:text="@string/update_list_item"
+        android:textSize="12sp" />
+</LinearLayout>

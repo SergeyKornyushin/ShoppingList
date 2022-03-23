@@ -7,11 +7,9 @@
         <item name="colorOnPrimary">@color/theme_blue_gray_white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/theme_blue_gray_light</item>
-        <item name="backgroundTint">@color/theme_blue_gray_dark</item>
-        <!--        <item name="colorSecondaryVariant">@color/picker_red</item>-->
-        <!--        <item name="colorOnSecondary">@color/picker_yellow</item>-->
-        <!--        <item name="backgroundColor">@color/picker_red</item>-->
-        <!--        <item name="background">@color/picker_red</item>-->
+
+        <!--My style-->
+<!--        <item name="backgroundTint">@color/red_light</item>-->
 
         <item name="android:backgroundTint">@color/theme_blue_gray_dark</item>
 
@@ -19,19 +17,27 @@
         <item name="itemIconTint">@color/theme_blue_gray_white</item>
 
         <item name="android:textColor">@color/theme_blue_gray_white</item>
-        <!-- ListPreference underText -->
+        <item name="android:textColorHint">@color/theme_blue_gray_light</item>
+        <!-- ListPreference underText for api 26+ -->
         <item name="android:colorForeground">@color/theme_blue_gray_white</item>
+        <item name="android:textColorSecondary">@color/theme_blue_gray_white</item>
+        <!-- ListPreference color of Category -->
+        <item name="colorAccent">@color/theme_blue_gray_white</item>
+        <item name="android:colorAccent">@color/theme_blue_gray_white</item>
+        <!-- ListPreference color of AlertDialog -->
+        <item name="textColorAlertDialogListItem">@color/theme_blue_gray_white</item>
+        <item name="colorBackgroundFloating">@color/theme_blue_gray_dark</item>
 
+        <!--attrs.xml-->
         <item name="iconPreferenceColor">@color/theme_blue_gray_white</item>
         <item name="recViewBackgroundColor">@color/theme_blue_gray_dark</item>
+        <item name="editTextWithBorderBackgroundColor">@color/theme_blue_gray_dark</item>
         <item name="buttonTextColor">@color/theme_blue_gray_white</item>
         <item name="buttonBackgroundColor">@color/theme_blue_gray_dark</item>
         <item name="dialogBackgroundColor">@color/theme_blue_gray_primary</item>
-
+        <item name="dialogBorderColor">@color/theme_blue_gray_white</item>
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
-
     </style>
 </resources>

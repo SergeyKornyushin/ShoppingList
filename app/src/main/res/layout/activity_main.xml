@@ -16,18 +16,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/nav_view"/>
 
-    <LinearLayout
+    <View
         android:layout_width="match_parent"
-        android:layout_height="1.5dp"
+        android:layout_height="4.5dp"
         app:layout_constraintBottom_toTopOf="@+id/nav_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:alpha="0.7"
-        android:background="@color/theme_blue_gray_light" />
+        android:background="?attr/dialogBorderColor" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
-        style="@style/Theme.ShoppingListDark"
+        app:itemTextColor="?attr/buttonTextColor"
+        app:itemIconTint="?attr/buttonTextColor"
+        android:background="?attr/recViewBackgroundColor"
+        app:backgroundTint="?attr/recViewBackgroundColor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:itemHorizontalTranslationEnabled="false"
