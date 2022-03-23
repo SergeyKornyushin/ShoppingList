@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
+import androidx.preference.PreferenceManager
 import com.example.shoppinglist.activities.MainApp
 import com.example.shoppinglist.activities.ShoppingListActivity
 import com.example.shoppinglist.databinding.FragmentShoppingListsBinding
@@ -46,12 +47,14 @@ class ShoppingListsFragment : BaseFragment(), ShoppingListAdapter.Listener {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentShoppingListsBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = ShoppingListAdapter(this)
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(view.context)
+        val adapter = ShoppingListAdapter(this, sharedPreferences)
         binding.rvShoppingLists.adapter = adapter
         mainViewModel.allShoppingLists.observe(viewLifecycleOwner) {
             adapter.submitList(it)

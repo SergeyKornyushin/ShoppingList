@@ -2,19 +2,23 @@ package com.example.shoppinglist.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Spannable
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
+import android.util.Log
 import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.preference.PreferenceManager
 import com.example.shoppinglist.R
 import com.example.shoppinglist.databinding.ActivityNewNoteBinding
 import com.example.shoppinglist.entities.NoteItem
@@ -30,6 +34,7 @@ import java.util.*
 class NewNoteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNewNoteBinding
     private var noteItem: NoteItem? = null
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,10 +43,13 @@ class NewNoteActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+
         getNote()
         binding.llColorPicker.setOnTouchListener(TouchListener())
         onClickColorPicker()
         actionMenuCallback()
+        setTextSize()
     }
 
     private fun getNote() = with(binding) {
@@ -185,6 +193,17 @@ class NewNoteActivity : AppCompatActivity() {
             override fun onDestroyActionMode(mode: android.view.ActionMode?) {}
         }
         binding.etDescription.customSelectionActionModeCallback = actionCallback
+    }
+
+    private fun setTextSize() = with(binding){
+        etTitle.setTextSize(sharedPreferences
+            .getString("title_text_size_key", "18"))
+        etDescription.setTextSize(sharedPreferences
+            .getString("content_text_size_key", "16"))
+    }
+
+    private fun EditText.setTextSize(size: String?){
+        if (size != null) this.textSize = size.toFloat()
     }
 }
 

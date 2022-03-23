@@ -2,6 +2,7 @@ package com.example.shoppinglist.fragments
 
 import android.app.Activity
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,11 @@ import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
+import androidx.preference.PreferenceManager
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.shoppinglist.activities.MainApp
 import com.example.shoppinglist.activities.NewNoteActivity
 import com.example.shoppinglist.databinding.FragmentNoteBinding
@@ -19,6 +25,7 @@ import com.example.shoppinglist.view_models.MainViewModel
 class NoteFragment : BaseFragment(), NoteAdapter.Listener {
     private lateinit var binding: FragmentNoteBinding
     private lateinit var editLauncher: ActivityResultLauncher<Intent>
+    private lateinit var sharedPreferences: SharedPreferences
     private val mainViewModel: MainViewModel by activityViewModels {
         MainViewModel.MainViewModelFactory((context?.applicationContext as MainApp).database)
     }
@@ -38,12 +45,20 @@ class NoteFragment : BaseFragment(), NoteAdapter.Listener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val rvAdapter = NoteAdapter(this)
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(view.context)
+        val rvAdapter = NoteAdapter(this, sharedPreferences)
+        binding.rvNoteFragment.layoutManager = getLayoutManager()
         binding.rvNoteFragment.adapter = rvAdapter
         mainViewModel.allNotes.observe(viewLifecycleOwner) {
             rvAdapter.submitList(it)
         }
     }
+
+    private fun getLayoutManager(): RecyclerView.LayoutManager =
+        if (sharedPreferences.getString("note_style_key", "Linear").equals("Linear"))
+            LinearLayoutManager(activity)
+         else StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+
 
     override fun onClickNew() {
         editLauncher.launch(Intent(activity, NewNoteActivity::class.java))

@@ -1,5 +1,6 @@
 package com.example.shoppinglist.rv_adapter
 
+import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,24 +11,26 @@ import com.example.shoppinglist.R
 import com.example.shoppinglist.databinding.NoteRvItemBinding
 import com.example.shoppinglist.entities.NoteItem
 import com.example.shoppinglist.utils.HtmlManager
+import com.example.shoppinglist.utils.TimeManager
 
-class NoteAdapter(private val listener: Listener) : ListAdapter<NoteItem, NoteAdapter.ItemHolder>(ItemComparator()) {
+class NoteAdapter(private val listener: Listener, private val sharedPreferences: SharedPreferences) :
+    ListAdapter<NoteItem, NoteAdapter.ItemHolder>(ItemComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder =
         ItemHolder.create(parent)
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        holder.setData(getItem(position), listener)
+        holder.setData(getItem(position), listener, sharedPreferences)
     }
 
     class ItemHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = NoteRvItemBinding.bind(view)
 
-        fun setData(noteItem: NoteItem, listener: Listener) =
+        fun setData(noteItem: NoteItem, listener: Listener, sharedPreferences: SharedPreferences) =
             with(binding) {
                 tvTitle.text = noteItem.title
                 tvDescribtion.text = HtmlManager.getFromHtml(noteItem.content).trim()
-                tvTime.text = noteItem.creationTime
+                tvTime.text = TimeManager.getTimeFormat(noteItem.creationTime, sharedPreferences)
                 itemView.setOnClickListener {
                     listener.onClickItem(noteItem)
                 }
@@ -53,7 +56,7 @@ class NoteAdapter(private val listener: Listener) : ListAdapter<NoteItem, NoteAd
             oldItem == newItem
     }
 
-    interface Listener{
+    interface Listener {
         fun deleteItem(id: Int)
         fun onClickItem(noteItem: NoteItem)
     }

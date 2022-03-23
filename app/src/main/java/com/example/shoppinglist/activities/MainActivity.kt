@@ -12,8 +12,9 @@ import com.example.shoppinglist.fragments.NoteFragment
 import com.example.shoppinglist.fragments.ShoppingListsFragment
 import com.example.shoppinglist.settings.SettingsActivity
 
-class MainActivity : AppCompatActivity(), NewListDialog.Listener {
+class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
+    private var currentMenuItemId = R.id.shopping_list
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,9 +32,11 @@ class MainActivity : AppCompatActivity(), NewListDialog.Listener {
                     startActivity(Intent(this, SettingsActivity::class.java))
                 }
                 R.id.notes -> {
+                    currentMenuItemId = R.id.notes
                     FragmentManager.setFragment(NoteFragment.newInstance(), this)
                 }
-                R.id.shop_list -> {
+                R.id.shopping_list -> {
+                    currentMenuItemId = R.id.shopping_list
                     FragmentManager.setFragment(ShoppingListsFragment.newInstance(), this)
                 }
                 R.id.new_item -> {
@@ -44,9 +47,12 @@ class MainActivity : AppCompatActivity(), NewListDialog.Listener {
         }
     }
 
-    override fun onClick(name: String) {
-        Log.i("test4", "onClick: $name")
+    override fun onResume() {
+        super.onResume()
+        binding.navView.selectedItemId = currentMenuItemId
     }
+
+
 
 
 }

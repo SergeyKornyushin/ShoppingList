@@ -1,6 +1,7 @@
 package com.example.shoppinglist.rv_adapter
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
@@ -15,24 +16,25 @@ import com.example.shoppinglist.databinding.NoteRvItemBinding
 import com.example.shoppinglist.entities.NoteItem
 import com.example.shoppinglist.entities.ShoppingList
 import com.example.shoppinglist.utils.HtmlManager
+import com.example.shoppinglist.utils.TimeManager
 
-class ShoppingListAdapter(private val listener: Listener) :
+class ShoppingListAdapter(private val listener: Listener, private val sharedPreferences: SharedPreferences) :
     ListAdapter<ShoppingList, ShoppingListAdapter.ItemHolder>(ItemComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder =
         ItemHolder.create(parent)
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        holder.setData(getItem(position), listener)
+        holder.setData(getItem(position), listener, sharedPreferences)
     }
 
     class ItemHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = ListNameRvItemBinding.bind(view)
 
-        fun setData(shoppingList: ShoppingList, listener: Listener) =
+        fun setData(shoppingList: ShoppingList, listener: Listener, sharedPreferences: SharedPreferences) =
             with(binding) {
                 tvListTitle.text = shoppingList.listName
-                tvCreationTime.text = shoppingList.creationTime
+                tvCreationTime.text = TimeManager.getTimeFormat(shoppingList.creationTime, sharedPreferences)
                 tvCount.text = "${shoppingList.checkedItemsCounter}/${shoppingList.allItemCounter}"
                 itemView.setOnClickListener {
                     listener.onClickItem(shoppingList)
