@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginStart="6dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginEnd="6dp"
+    android:background="@drawable/dialog_layer_border_background"
+    android:backgroundTint="@null">
 
     <ImageButton
         android:id="@+id/ibtn_delete_shopping_item"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="4dp"
         android:alpha="0.8"
         android:background="@null"
         android:backgroundTint="@null"
         android:elevation="10dp"
         android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="@+id/cardView"
-        app:layout_constraintTop_toTopOf="@+id/cardView"
+        app:layout_constraintEnd_toEndOf="@+id/linear_layout"
+        app:layout_constraintTop_toTopOf="@+id/linear_layout"
         app:srcCompat="@drawable/ic_delete_shopping_item" />
 
     <ImageButton
@@ -34,50 +40,42 @@
         app:layout_constraintTop_toTopOf="@+id/ibtn_delete_shopping_item"
         app:srcCompat="@drawable/ic_edit_shopping_item" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginStart="6dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="6dp"
-        app:cardCornerRadius="8dp"
-        android:backgroundTint="@color/green_light"
+        android:orientation="vertical"
+        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tv_list_title"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginStart="6dp"
-            android:padding="5dp">
+            android:layout_height="wrap_content"
+            android:textColor="?attr/textColorItems"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="TextView" />
 
-            <TextView
-                android:id="@+id/tv_list_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="TextView"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tv_creation_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/textColorItems"
+            android:textSize="12sp"
+            tools:text="TextView" />
 
-            <TextView
-                android:id="@+id/tv_creation_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="TextView"
-                android:textSize="12sp" />
-
-            <ProgressBar
-                android:id="@+id/pb_shop_list"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+        <ProgressBar
+            android:id="@+id/pb_shop_list"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_counter"

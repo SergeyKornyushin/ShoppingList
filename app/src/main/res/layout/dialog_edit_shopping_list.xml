@@ -16,6 +16,7 @@
         android:layout_marginBottom="8dp"
         android:gravity="center"
         android:text="@string/new_list_name"
+        android:textColor="?attr/textColorItems"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -30,9 +31,9 @@
         android:backgroundTint="@null"
         android:ems="10"
         android:hint="@string/list_name"
-        android:textColor="?attr/buttonTextColor"
         android:inputType="textPersonName"
         android:padding="8dp"
+        android:textColor="?attr/buttonTextColor"
         app:backgroundTint="@null" />
 
     <EditText
@@ -45,20 +46,20 @@
         android:backgroundTint="@null"
         android:ems="10"
         android:hint="@string/list_info"
-        android:textColor="?attr/buttonTextColor"
         android:inputType="textMultiLine"
         android:padding="8dp"
+        android:textColor="?attr/buttonTextColor"
         app:backgroundTint="@null" />
 
     <Button
         android:id="@+id/btn_edit_shopping_list"
-        android:paddingStart="50dp"
-        android:paddingEnd="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="3dp"
+        android:paddingStart="50dp"
+        android:paddingEnd="50dp"
         android:text="@string/update_list_item"
         android:textSize="12sp" />
 </LinearLayout>

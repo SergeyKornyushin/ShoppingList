@@ -33,11 +33,13 @@
     <color name="theme_blue_gray_dark">#102027</color>
     <color name="theme_blue_gray_white">#8FA9CF</color>
 
-    <color name="theme_orange_primary">#fb8c00</color>
-    <color name="theme_orange_light">#ffbd45</color>
-    <color name="theme_orange_dark">#c25e00</color>
+    <color name="theme_orange_primary">#D7FF8B1C</color>
+    <color name="theme_orange_light">#FFBF00</color>ffbd45
+    <color name="theme_orange_dark">#222222</color>
+    <color name="theme_orange_white">#303030</color>FFD4AB
 
     <color name="theme_gray_primary">#e0e0e0</color>
     <color name="theme_gray_light">#ffffff</color>
     <color name="theme_gray_dark">#aeaeae</color>
+    <color name="theme_gray_white">#ffffff</color>
 </resources>

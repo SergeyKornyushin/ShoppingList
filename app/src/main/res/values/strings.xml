@@ -52,6 +52,9 @@
     <!--settings_preference.xml______KEYS-->
     <string name="default_note_title_size">18</string>
     <string name="default_note_content_size">16</string>
+    <string name="new_note_save">Save</string>
+    <string name="new_note_bold">Bold</string>
+    <string name="new_note_color">Color</string>
 
 
 </resources>

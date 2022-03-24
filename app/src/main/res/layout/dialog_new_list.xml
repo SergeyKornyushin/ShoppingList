@@ -16,6 +16,7 @@
         android:layout_marginBottom="8dp"
         android:gravity="center"
         android:text="@string/new_list_name"
+        android:textColor="?attr/textColorItems"
         android:textSize="18sp"
         android:textStyle="bold" />
 

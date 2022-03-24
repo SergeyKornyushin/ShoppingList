@@ -9,8 +9,6 @@
         <item name="colorSecondary">@color/theme_blue_gray_light</item>
 
         <!--My style-->
-<!--        <item name="backgroundTint">@color/red_light</item>-->
-
         <item name="android:backgroundTint">@color/theme_blue_gray_dark</item>
 
         <item name="itemTextColor">@color/theme_blue_gray_white</item>
@@ -20,6 +18,7 @@
         <item name="android:textColorHint">@color/theme_blue_gray_light</item>
         <!-- ListPreference underText for api 26+ -->
         <item name="android:colorForeground">@color/theme_blue_gray_white</item>
+        <!-- ListPreference underText for api 26- -->
         <item name="android:textColorSecondary">@color/theme_blue_gray_white</item>
         <!-- ListPreference color of Category -->
         <item name="colorAccent">@color/theme_blue_gray_white</item>
@@ -36,8 +35,66 @@
         <item name="buttonBackgroundColor">@color/theme_blue_gray_dark</item>
         <item name="dialogBackgroundColor">@color/theme_blue_gray_primary</item>
         <item name="dialogBorderColor">@color/theme_blue_gray_white</item>
+        <item name="textColorItems">@color/theme_blue_gray_white</item>
+
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
     </style>
+
+    <style name="Theme.ShoppingListOrange" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/theme_orange_dark</item>
+        <item name="colorPrimaryVariant">@color/theme_orange_dark</item>
+        <item name="colorOnPrimary">@color/theme_orange_primary</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/theme_orange_light</item>
+
+        <!--My style-->
+        <item name="android:backgroundTint">@color/theme_orange_dark</item>
+
+        <item name="itemTextColor">@color/theme_orange_white</item>
+        <item name="itemIconTint">@color/theme_orange_white</item>
+
+        <item name="android:textColor">@color/theme_orange_primary</item>
+        <item name="android:textColorHint">@color/theme_orange_light</item>
+        <!-- ListPreference underText for api 26+ -->
+        <item name="android:colorForeground">@color/theme_orange_primary</item>
+        <!-- ListPreference underText for api 26- -->
+        <item name="android:textColorSecondary">@color/theme_orange_primary</item>
+        <!-- ListPreference color of Category -->
+        <item name="colorAccent">@color/theme_orange_primary</item>
+        <item name="android:colorAccent">@color/theme_orange_primary</item>
+        <!-- ListPreference color of AlertDialog -->
+        <item name="textColorAlertDialogListItem">@color/theme_orange_primary</item>
+        <item name="colorBackgroundFloating">@color/theme_orange_dark</item>
+
+        <item name="homeAsUpIndicator">@drawable/ic_home_as_up_indicator</item>
+        <item name="android:actionOverflowButtonStyle">@style/CustomMoreMenu</item>
+
+        <!--attrs.xml-->
+        <item name="iconPreferenceColor">@color/theme_orange_primary</item>
+        <item name="recViewBackgroundColor">@color/theme_orange_dark</item>
+        <item name="editTextWithBorderBackgroundColor">@color/theme_orange_dark</item>
+        <item name="buttonTextColor">@color/theme_orange_primary</item>
+        <item name="buttonBackgroundColor">@color/theme_orange_dark</item>
+        <item name="dialogBackgroundColor">@color/theme_orange_primary</item>
+        <item name="dialogBorderColor">@color/theme_orange_light</item>
+        <item name="textColorItems">@color/theme_orange_white</item>
+
+        <item name="toolbarStyle">@style/CustomToolBarStyle</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+    </style>
+
+    <style name="CustomToolBarStyle" parent="@style/Widget.AppCompat.Toolbar">
+        <item name="titleTextColor">@color/theme_orange_primary</item>
+    </style>
+
+    <style name="CustomMoreMenu" parent="@style/Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="android:src">@drawable/ic_more_vert</item>
+    </style>
+
+
 </resources>

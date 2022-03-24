@@ -7,4 +7,5 @@
     <attr name="dialogBackgroundColor" format="reference|color" />
     <attr name="dialogBorderColor" format="reference|color" />
     <attr name="editTextWithBorderBackgroundColor" format="reference|color" />
+    <attr name="textColorItems" format="reference|color" />
 </resources>

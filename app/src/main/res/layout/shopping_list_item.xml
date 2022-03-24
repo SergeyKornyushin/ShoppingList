@@ -40,8 +40,9 @@
                     android:id="@+id/tv_list_item_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black_light"
+                    android:textColor="?attr/textColorItems"
                     android:textStyle="bold"
+
                     tools:text="Title" />
 
                 <TextView
@@ -49,6 +50,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
+                    android:textColor="?attr/textColorItems"
                     android:textSize="12sp"
                     android:visibility="gone"
                     tools:text="TextView"
