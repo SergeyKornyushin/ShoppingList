@@ -3,83 +3,65 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginStart="6dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginEnd="6dp"
+    android:padding="6dp"
+    android:background="@drawable/dialog_layer_border_background"
+    android:backgroundTint="@null">
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="6dp"
-        android:backgroundTint="@color/blue_light"
-        app:cardCornerRadius="8dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ibtn_edit_item"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_list_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/textColorItems"
+            android:textStyle="bold"
+            tools:text="Title" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="6dp"
-                android:layout_marginBottom="4dp"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/ibtn_edit_item"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:id="@+id/tv_list_item_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:textColor="?attr/textColorItems"
+            android:textSize="12sp"
+            android:visibility="gone"
+            tools:text="Info"
+            tools:visibility="visible" />
 
-                <TextView
-                    android:id="@+id/tv_list_item_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="?attr/textColorItems"
-                    android:textStyle="bold"
+    </LinearLayout>
 
-                    tools:text="Title" />
+    <CheckBox
+        android:id="@+id/check_box_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/tv_list_item_description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:textColor="?attr/textColorItems"
-                    android:textSize="12sp"
-                    android:visibility="gone"
-                    tools:text="TextView"
-                    tools:visibility="visible" />
-
-            </LinearLayout>
-
-            <CheckBox
-                android:id="@+id/check_box_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageButton
-                android:id="@+id/ibtn_edit_item"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginEnd="10dp"
-                android:alpha="0.8"
-                android:background="@null"
-                android:backgroundTint="@null"
-                android:elevation="10dp"
-                android:scaleType="centerCrop"
-                app:layout_constraintBottom_toBottomOf="@+id/check_box_item"
-                app:layout_constraintEnd_toStartOf="@+id/check_box_item"
-                app:layout_constraintTop_toTopOf="@+id/check_box_item"
-                app:srcCompat="@drawable/ic_edit_shopping_item" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+    <ImageButton
+        android:id="@+id/ibtn_edit_item"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="10dp"
+        android:alpha="0.8"
+        android:background="@null"
+        android:backgroundTint="@null"
+        android:elevation="10dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@+id/check_box_item"
+        app:layout_constraintEnd_toStartOf="@+id/check_box_item"
+        app:layout_constraintTop_toTopOf="@+id/check_box_item"
+        app:srcCompat="@drawable/ic_edit" />
 </androidx.constraintlayout.widget.ConstraintLayout>

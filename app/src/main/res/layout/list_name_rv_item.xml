@@ -24,7 +24,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="@+id/linear_layout"
         app:layout_constraintTop_toTopOf="@+id/linear_layout"
-        app:srcCompat="@drawable/ic_delete_shopping_item" />
+        app:srcCompat="@drawable/ic_delete" />
 
     <ImageButton
         android:id="@+id/ibtn_edit_shopping_item"
@@ -38,7 +38,24 @@
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toStartOf="@+id/ibtn_delete_shopping_item"
         app:layout_constraintTop_toTopOf="@+id/ibtn_delete_shopping_item"
-        app:srcCompat="@drawable/ic_edit_shopping_item" />
+        app:srcCompat="@drawable/ic_edit" />
+
+    <TextView
+        android:id="@+id/tv_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginEnd="10dp"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:padding="4dp"
+        android:textColor="?attr/counterItemTextColor"
+        android:backgroundTint="@null"
+        android:background="@drawable/couner_border_background"
+        app:layout_constraintEnd_toStartOf="@+id/ibtn_edit_shopping_item"
+        app:layout_constraintTop_toTopOf="@+id/ibtn_edit_shopping_item"
+        app:layout_constraintBottom_toBottomOf="@+id/ibtn_edit_shopping_item"
+        tools:text="0/0"/>
 
     <LinearLayout
         android:id="@+id/linear_layout"
@@ -60,7 +77,7 @@
             android:textColor="?attr/textColorItems"
             android:textSize="16sp"
             android:textStyle="bold"
-            tools:text="TextView" />
+            tools:text="Title" />
 
         <TextView
             android:id="@+id/tv_creation_time"
@@ -68,7 +85,7 @@
             android:layout_height="wrap_content"
             android:textColor="?attr/textColorItems"
             android:textSize="12sp"
-            tools:text="TextView" />
+            tools:text="Time" />
 
         <ProgressBar
             android:id="@+id/pb_shop_list"
@@ -77,27 +94,4 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_counter"
-        android:layout_width="35dp"
-        android:layout_height="25dp"
-        android:layout_marginEnd="10dp"
-        android:alpha="0.8"
-        android:backgroundTint="@color/blue"
-        android:elevation="10dp"
-        app:cardCornerRadius="4dp"
-        app:layout_constraintEnd_toStartOf="@+id/ibtn_edit_shopping_item"
-        app:layout_constraintTop_toTopOf="@+id/ibtn_edit_shopping_item">
-
-        <TextView
-            android:id="@+id/tv_count"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="0/0"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            tools:text="0/0" />
-    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,4 +8,8 @@
     <attr name="dialogBorderColor" format="reference|color" />
     <attr name="editTextWithBorderBackgroundColor" format="reference|color" />
     <attr name="textColorItems" format="reference|color" />
+    <attr name="counterItemTextColor" format="reference|color" />
+
+    <attr name="deleteIconColor" format="reference|color" />
+    <attr name="editIconColor" format="reference|color" />
 </resources>
