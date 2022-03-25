@@ -29,7 +29,7 @@
             android:entries="@array/theme_array"
             android:entryValues="@array/theme_values"
             android:icon="@drawable/ic_theme_preference"
-            android:key="theme_key"
+            android:key="@string/pref_theme_key"
             android:title="@string/chose_theme"
             app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>

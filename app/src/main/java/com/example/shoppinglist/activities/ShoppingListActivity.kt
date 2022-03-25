@@ -1,6 +1,7 @@
 package com.example.shoppinglist.activities
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -10,6 +11,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import androidx.activity.viewModels
+import androidx.preference.PreferenceManager
 import com.example.shoppinglist.R
 import com.example.shoppinglist.databinding.ActivityShoppingListBinding
 import com.example.shoppinglist.dialogs.EditListDialog
@@ -32,11 +34,14 @@ class ShoppingListActivity : AppCompatActivity(), ShoppingItemAdapter.Listener {
     private lateinit var saveMenuButton: MenuItem
     private var editTextNewShoppingItem: EditText? = null
     private lateinit var textWatcher: TextWatcher
+    private lateinit var sharedPreferences: SharedPreferences
     private val mainViewModel: MainViewModel by viewModels {
         MainViewModel.MainViewModelFactory((applicationContext as MainApp).database)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        setTheme(getSelectedTheme())
         super.onCreate(savedInstanceState)
         binding = ActivityShoppingListBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -237,4 +242,18 @@ class ShoppingListActivity : AppCompatActivity(), ShoppingItemAdapter.Listener {
         saveItemCount()
         super.onBackPressed()
     }
+
+    private fun getSelectedTheme(): Int =
+        when {
+            sharedPreferences.getString(getString(R.string.pref_theme_key), "Dark") == "Dark" -> {
+                R.style.Theme_ShoppingListDark
+            }
+            sharedPreferences.getString(getString(R.string.pref_theme_key), "Dark") == "Orange" -> {
+                R.style.Theme_ShoppingListOrange
+            }
+            else -> {
+                R.style.Theme_ShoppingListLight
+            }
+
+        }
 }
