@@ -45,6 +45,7 @@
             android:backgroundTint="?attr/buttonBackgroundColor"
             android:scrollbarSize="0dp"
             android:text="@string/btn_cancel"
+            android:textColor="?attr/textColorItems"
             android:textSize="12sp" />
 
         <Button
@@ -57,6 +58,7 @@
             android:backgroundTint="?attr/buttonBackgroundColor"
             android:scrollbarSize="0dp"
             android:text="@string/btn_delete"
+            android:textColor="?attr/textColorItems"
             android:textSize="12sp" />
 
     </LinearLayout>

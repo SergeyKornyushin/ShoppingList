@@ -34,7 +34,8 @@
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:padding="8dp"
-        android:textColor="?attr/buttonTextColor"
+        android:textColor="?attr/textColorItems"
+        android:textColorHint="?attr/editTextColor"
         app:backgroundTint="@null" />
 
     <Button
@@ -47,5 +48,6 @@
         android:paddingStart="30dp"
         android:paddingEnd="30dp"
         android:text="@string/create_list"
+        android:textColor="?attr/textColorItems"
         android:textSize="12sp" />
 </LinearLayout>

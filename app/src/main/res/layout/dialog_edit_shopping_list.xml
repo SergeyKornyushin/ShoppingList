@@ -33,7 +33,8 @@
         android:hint="@string/list_name"
         android:inputType="textPersonName"
         android:padding="8dp"
-        android:textColor="?attr/buttonTextColor"
+        android:textColor="?attr/textColorItems"
+        android:textColorHint="?attr/editTextColor"
         app:backgroundTint="@null" />
 
     <EditText
@@ -48,7 +49,8 @@
         android:hint="@string/list_info"
         android:inputType="textMultiLine"
         android:padding="8dp"
-        android:textColor="?attr/buttonTextColor"
+        android:textColor="?attr/textColorItems"
+        android:textColorHint="?attr/editTextColor"
         app:backgroundTint="@null" />
 
     <Button
@@ -61,5 +63,6 @@
         android:paddingStart="50dp"
         android:paddingEnd="50dp"
         android:text="@string/update_list_item"
+        android:textColor="?attr/textColorItems"
         android:textSize="12sp" />
 </LinearLayout>

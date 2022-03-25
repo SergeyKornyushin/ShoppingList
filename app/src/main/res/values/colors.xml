@@ -39,6 +39,7 @@
     <color name="theme_orange_light">#FFBF00</color>
     <color name="theme_orange_dark">#222222</color>
     <color name="theme_orange_white">#303030</color>
+    <color name="theme_orange_gray">#4C4C4C</color>
     <color name="theme_orange_delete_icon">#802525</color>
     <color name="theme_orange_edit_icon">#105A2B</color>
 
@@ -46,4 +47,8 @@
     <color name="theme_gray_light">#ffffff</color>
     <color name="theme_gray_dark">#aeaeae</color>
     <color name="theme_gray_white">#ffffff</color>
+    <color name="theme_gray_text">#464646</color>
+    <color name="theme_gray_edit_text">#D0888888</color>
+    <color name="theme_gray_delete_icon">#FF5E5E</color>
+    <color name="theme_gray_edit_icon">#60FF99</color>
 </resources>

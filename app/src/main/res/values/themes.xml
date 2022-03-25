@@ -40,6 +40,7 @@
         <item name="dialogBorderColor">@color/theme_blue_gray_white</item>
         <item name="textColorItems">@color/theme_blue_gray_white</item>
         <item name="counterItemTextColor">@color/theme_blue_gray_dark</item>
+        <item name="textColorCheckedItems">@color/theme_blue_gray_light</item>
 
         <item name="deleteIconColor">@color/theme_blue_gray_delete_icon</item>
         <item name="editIconColor">@color/theme_blue_gray_edit_icon</item>
@@ -93,6 +94,7 @@
         <item name="dialogBorderColor">@color/theme_orange_light</item>
         <item name="textColorItems">@color/theme_orange_white</item>
         <item name="counterItemTextColor">@color/theme_orange_white</item>
+        <item name="textColorCheckedItems">@color/theme_orange_gray</item>
 
         <item name="deleteIconColor">@color/theme_orange_delete_icon</item>
         <item name="editIconColor">@color/theme_orange_edit_icon</item>
@@ -107,6 +109,62 @@
     <style name="CustomToolBarStyle.Orange" parent="@style/Widget.AppCompat.Toolbar">
         <item name="titleTextColor">@color/theme_orange_primary</item>
     </style>
+
+    <style name="Theme.ShoppingListLight" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/theme_gray_primary</item>
+        <item name="colorPrimaryVariant">@color/theme_gray_primary</item>
+        <item name="colorOnPrimary">@color/theme_gray_dark</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/theme_gray_dark</item>
+
+        <!--My style-->
+        <item name="android:backgroundTint">@color/theme_gray_primary</item>
+
+        <item name="itemTextColor">@color/theme_gray_text</item>
+        <item name="itemIconTint">@color/theme_gray_text</item>
+
+        <item name="android:textColor">@color/theme_gray_text</item>
+        <item name="android:textColorHint">@color/theme_gray_text</item>
+        <!-- ListPreference underText for api 26+ -->
+        <item name="android:colorForeground">@color/theme_gray_text</item>
+        <!-- ListPreference underText for api 26- -->
+        <item name="android:textColorSecondary">@color/theme_gray_text</item>
+        <!-- ListPreference color of Category -->
+        <item name="colorAccent">@color/theme_gray_text</item>
+        <item name="android:colorAccent">@color/theme_gray_text</item>
+        <!-- ListPreference color of AlertDialog -->
+        <item name="textColorAlertDialogListItem">@color/theme_gray_text</item>
+        <item name="colorBackgroundFloating">@color/theme_gray_primary</item>
+
+        <item name="homeAsUpIndicator">@drawable/ic_home_as_up_indicator</item>
+        <item name="android:actionOverflowButtonStyle">@style/CustomMoreMenu</item>
+
+        <!--attrs.xml-->
+        <item name="iconPreferenceColor">@color/theme_gray_text</item>
+        <item name="recViewBackgroundColor">@color/theme_gray_primary</item>
+        <item name="editTextWithBorderBackgroundColor">@color/theme_gray_primary</item>
+        <item name="buttonTextColor">@color/theme_gray_text</item>
+        <item name="buttonBackgroundColor">@color/theme_gray_primary</item>
+        <item name="dialogBackgroundColor">@color/theme_gray_dark</item>
+        <item name="dialogBorderColor">@color/theme_gray_white</item>
+        <item name="textColorItems">@color/theme_gray_text</item>
+        <item name="counterItemTextColor">@color/theme_gray_primary</item>
+        <item name="textColorCheckedItems">@color/theme_gray_white</item>
+        <item name="editTextColor">@color/theme_gray_edit_text</item>
+
+        <item name="deleteIconColor">@color/theme_gray_delete_icon</item>
+        <item name="editIconColor">@color/theme_gray_edit_icon</item>
+
+        <item name="toolbarStyle">@style/CustomToolBarStyle.Light</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+    </style>
+
+    <style name="CustomToolBarStyle.Light" parent="@style/Widget.AppCompat.Toolbar">
+        <item name="titleTextColor">@color/theme_gray_text</item>
+    </style>
+
 
     <style name="CustomMoreMenu" parent="@style/Theme.MaterialComponents.Light.DarkActionBar">
         <item name="android:src">@drawable/ic_more_vert</item>
