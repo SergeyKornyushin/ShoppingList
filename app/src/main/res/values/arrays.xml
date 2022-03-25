@@ -19,14 +19,14 @@
     </string-array>
 
     <string-array name="theme_array">
-        <item>Blue</item>
-        <item>Green</item>
+        <item>Dark</item>
         <item>Orange</item>
+        <item>Light</item>
     </string-array>
     <string-array name="theme_values">
-        <item>Blue</item>
-        <item>Green</item>
+        <item>Dark</item>
         <item>Orange</item>
+        <item>Light</item>
     </string-array>
 
     <string-array name="note_title_size_array">

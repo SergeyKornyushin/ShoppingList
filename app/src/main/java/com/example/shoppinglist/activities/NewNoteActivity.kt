@@ -37,13 +37,13 @@ class NewNoteActivity : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        setTheme(getSelectedTheme())
         super.onCreate(savedInstanceState)
         binding = ActivityNewNoteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
         getNote()
         binding.llColorPicker.setOnTouchListener(TouchListener())
@@ -205,21 +205,18 @@ class NewNoteActivity : AppCompatActivity() {
     private fun EditText.setTextSize(size: String?){
         if (size != null) this.textSize = size.toFloat()
     }
+
+    private fun getSelectedTheme(): Int =
+        when {
+            sharedPreferences.getString(getString(R.string.pref_theme_key), "Dark") == "Dark" -> {
+                R.style.Theme_ShoppingListDark
+            }
+            sharedPreferences.getString(getString(R.string.pref_theme_key), "Dark") == "Orange" -> {
+                R.style.Theme_ShoppingListOrange
+            }
+            else -> {
+                R.style.Theme_ShoppingListLight
+            }
+
+        }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

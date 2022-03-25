@@ -55,6 +55,7 @@
     <string name="new_note_save">Save</string>
     <string name="new_note_bold">Bold</string>
     <string name="new_note_color">Color</string>
+    <string name="pref_theme_key">theme_key</string>
 
 
 </resources>

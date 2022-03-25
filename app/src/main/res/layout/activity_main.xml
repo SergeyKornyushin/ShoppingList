@@ -32,7 +32,7 @@
         app:itemTextColor="?attr/buttonTextColor"
         app:itemIconTint="?attr/buttonTextColor"
         android:background="?attr/recViewBackgroundColor"
-        app:backgroundTint="?attr/recViewBackgroundColor"
+        app:backgroundTint="@null"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:itemHorizontalTranslationEnabled="false"

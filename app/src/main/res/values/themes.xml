@@ -158,7 +158,8 @@
 
         <item name="toolbarStyle">@style/CustomToolBarStyle.Light</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="lollipop">?attr/colorPrimaryVariant</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
     </style>
 
     <style name="CustomToolBarStyle.Light" parent="@style/Widget.AppCompat.Toolbar">
