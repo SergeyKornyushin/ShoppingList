@@ -11,6 +11,7 @@ import com.example.shoppinglist.fragments.FragmentManager
 import com.example.shoppinglist.fragments.NoteFragment
 import com.example.shoppinglist.fragments.ShoppingListsFragment
 import com.example.shoppinglist.settings.SettingsActivity
+import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding

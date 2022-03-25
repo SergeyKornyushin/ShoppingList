@@ -25,7 +25,7 @@
     <PreferenceCategory android:title="@string/theme_style">
 
         <ListPreference
-            android:defaultValue="1"
+            android:defaultValue="Dark"
             android:entries="@array/theme_array"
             android:entryValues="@array/theme_values"
             android:icon="@drawable/ic_theme_preference"
