@@ -41,6 +41,8 @@ class ShoppingListActivity : AppCompatActivity(), ShoppingItemAdapter.Listener {
         binding = ActivityShoppingListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         shoppingList = intent.getSerializableExtra(SHOPPING_LIST) as ShoppingList
 
         adapter = ShoppingItemAdapter(this)
@@ -100,6 +102,8 @@ class ShoppingListActivity : AppCompatActivity(), ShoppingItemAdapter.Listener {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            android.R.id.home -> finish()
+
             R.id.save_shopping_list -> addNewShoppingItem(editTextNewShoppingItem?.text.toString())
 
             R.id.delete_shopping_list -> {

@@ -5,13 +5,13 @@ import android.content.Context
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import com.example.shoppinglist.R
-import com.example.shoppinglist.databinding.NewListDialogBinding
+import com.example.shoppinglist.databinding.DialogNewListBinding
 
 object NewListDialog {
     fun showCreationDialog(context: Context, listener: Listener, name: String) {
         var dialog: AlertDialog? = null
         val builder = AlertDialog.Builder(context)
-        val binding = NewListDialogBinding.inflate(LayoutInflater.from(context))
+        val binding = DialogNewListBinding.inflate(LayoutInflater.from(context))
         builder.setView(binding.root)
         binding.apply {
             etEditListName.setText(name)

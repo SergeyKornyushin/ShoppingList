@@ -1,9 +1,15 @@
 package com.example.shoppinglist.rv_adapter
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.graphics.Color
 import android.graphics.Paint
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.AttrRes
+import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -17,6 +23,7 @@ import com.example.shoppinglist.entities.NoteItem
 import com.example.shoppinglist.entities.ShoppingList
 import com.example.shoppinglist.entities.ShoppingListItem
 import com.example.shoppinglist.utils.HtmlManager
+import com.google.android.material.color.MaterialColors
 
 class ShoppingItemAdapter(private val listener: Listener) :
     ListAdapter<ShoppingListItem, ShoppingItemAdapter.ItemHolder>(ItemComparator()) {
@@ -48,7 +55,10 @@ class ShoppingItemAdapter(private val listener: Listener) :
                 checkBoxItem.isChecked = shoppingListItem.checkItem
                 setPainFlagAndColor(binding)
                 checkBoxItem.setOnClickListener {
-                    listener.onClickItem(shoppingListItem.copy(checkItem = checkBoxItem.isChecked), CHECK_BOX)
+                    listener.onClickItem(
+                        shoppingListItem.copy(checkItem = checkBoxItem.isChecked),
+                        CHECK_BOX
+                    )
                 }
                 ibtnEditItem.setOnClickListener {
                     listener.onClickItem(shoppingListItem, EDIT)
@@ -70,7 +80,6 @@ class ShoppingItemAdapter(private val listener: Listener) :
                     listener.onClickItem(shoppingListItem, ADD_LIBRARY_ITEM)
                 }
             }
-
         }
 
         private fun setPainFlagAndColor(binding: ShoppingListItemBinding) {
@@ -79,18 +88,20 @@ class ShoppingItemAdapter(private val listener: Listener) :
                     tvListItemTitle.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
                     tvListItemDescription.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
                     tvListItemTitle.setTextColor(
-                        ContextCompat.getColor(
+                        MaterialColors.getColor(
                             binding.root.context,
-                            R.color.gray
+                            R.attr.textColorCheckedItems,
+                            Color.BLACK
                         )
                     )
                 } else {
                     tvListItemTitle.paintFlags = Paint.ANTI_ALIAS_FLAG
                     tvListItemDescription.paintFlags = Paint.ANTI_ALIAS_FLAG
                     tvListItemTitle.setTextColor(
-                        ContextCompat.getColor(
+                        MaterialColors.getColor(
                             binding.root.context,
-                            R.color.black_light
+                            R.attr.textColorItems,
+                            Color.BLACK
                         )
                     )
                 }
@@ -128,7 +139,7 @@ class ShoppingItemAdapter(private val listener: Listener) :
         fun onClickItem(shoppingListItem: ShoppingListItem, action: String)
     }
 
-    companion object{
+    companion object {
         const val EDIT = "edit"
         const val CHECK_BOX = "check_box"
         const val EDIT_LIBRARY_ITEM = "edit_library_item"

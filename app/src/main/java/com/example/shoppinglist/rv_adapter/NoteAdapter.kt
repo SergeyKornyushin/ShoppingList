@@ -29,7 +29,7 @@ class NoteAdapter(private val listener: Listener, private val sharedPreferences:
         fun setData(noteItem: NoteItem, listener: Listener, sharedPreferences: SharedPreferences) =
             with(binding) {
                 tvTitle.text = noteItem.title
-                tvDescribtion.text = HtmlManager.getFromHtml(noteItem.content).trim()
+                tvDescription.text = HtmlManager.getFromHtml(noteItem.content).trim()
                 tvTime.text = TimeManager.getTimeFormat(noteItem.creationTime, sharedPreferences)
                 itemView.setOnClickListener {
                     listener.onClickItem(noteItem)

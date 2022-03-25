@@ -32,6 +32,8 @@
                 android:ems="10"
                 android:hint="@string/ed_title_hint"
                 android:inputType="textPersonName"
+                android:textColor="?attr/textColorItems"
+                android:textColorHint="?attr/editTextColor"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -48,6 +50,8 @@
                 android:isScrollContainer="true"
                 android:keepScreenOn="true"
                 android:singleLine="false"
+                android:textColor="?attr/textColorItems"
+                android:textColorHint="?attr/editTextColor"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/et_title"
@@ -75,7 +79,9 @@
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#EAEAEA"
+            android:paddingStart="5dp"
+            android:background="@drawable/edittext_layer_border_background"
+            android:backgroundTint="@null"
             android:padding="1dp">
 
             <TableRow
@@ -87,42 +93,48 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_margin="3dp"
-                    android:background="@color/picker_black" />
+                    android:background="@color/picker_black"
+                    android:backgroundTint="@null" />
 
                 <ImageButton
                     android:id="@+id/pic_blue"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_margin="3dp"
-                    android:background="@color/picker_blue" />
+                    android:background="@color/picker_blue"
+                    android:backgroundTint="@null" />
 
                 <ImageButton
                     android:id="@+id/pic_yellow"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_margin="3dp"
-                    android:background="@color/picker_yellow" />
+                    android:background="@color/picker_yellow"
+                    android:backgroundTint="@null" />
 
                 <ImageButton
                     android:id="@+id/pic_red"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_margin="3dp"
-                    android:background="@color/picker_red" />
+                    android:background="@color/picker_red"
+                    android:backgroundTint="@null" />
 
                 <ImageButton
                     android:id="@+id/pic_green"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_margin="3dp"
-                    android:background="@color/picker_green" />
+                    android:background="@color/picker_green"
+                    android:backgroundTint="@null" />
 
                 <ImageButton
                     android:id="@+id/pic_orange"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_margin="3dp"
-                    android:background="@color/picker_orange" />
+                    android:background="@color/picker_orange"
+                    android:backgroundTint="@null" />
 
                 <ImageButton
                     android:id="@+id/pic_move_window"
@@ -130,6 +142,7 @@
                     android:layout_height="45dp"
                     android:layout_gravity="center_vertical"
                     android:background="@null"
+                    android:backgroundTint="@null"
                     android:clickable="false"
                     app:srcCompat="@drawable/ic_menu_move" />
             </TableRow>

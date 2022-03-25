@@ -12,12 +12,12 @@
         android:title="@string/share_shopping_list" />
 
     <item
-        android:title="@string/new_shopping_list"
         android:id="@+id/new_shopping_list"
         android:icon="@drawable/ic_new_shopping_list"
+        android:orderInCategory="1"
+        android:title="@string/new_shopping_list"
         app:actionLayout="@layout/edit_action_layout"
-        app:showAsAction="always|collapseActionView"
-        android:orderInCategory="1"/>
+        app:showAsAction="always|collapseActionView" />
 
     <item
         android:id="@+id/save_shopping_list"

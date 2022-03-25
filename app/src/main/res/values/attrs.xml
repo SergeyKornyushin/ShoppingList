@@ -5,4 +5,13 @@
     <attr name="buttonTextColor" format="reference|color" />
     <attr name="buttonBackgroundColor" format="reference|color" />
     <attr name="dialogBackgroundColor" format="reference|color" />
+    <attr name="dialogBorderColor" format="reference|color" />
+    <attr name="editTextWithBorderBackgroundColor" format="reference|color" />
+    <attr name="textColorItems" format="reference|color" />
+    <attr name="editTextColor" format="reference|color" />
+    <attr name="textColorCheckedItems" format="reference|color" />
+    <attr name="counterItemTextColor" format="reference|color" />
+
+    <attr name="deleteIconColor" format="reference|color" />
+    <attr name="editIconColor" format="reference|color" />
 </resources>

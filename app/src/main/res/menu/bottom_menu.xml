@@ -2,24 +2,28 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/settings"
-        android:title="@string/settings"
+    <item
+        android:id="@+id/settings"
         android:icon="@drawable/ic_bottom_settings"
-        app:showAsAction="ifRoom"/>
+        android:title="@string/settings"
+        app:showAsAction="ifRoom" />
 
-    <item android:id="@+id/notes"
-        android:title="@string/notes"
+    <item
+        android:id="@+id/notes"
         android:icon="@drawable/ic_bottom_note"
-        app:showAsAction="ifRoom"/>
+        android:title="@string/notes"
+        app:showAsAction="ifRoom" />
 
-    <item android:id="@+id/shopping_list"
-        android:title="@string/shopping_list"
+    <item
+        android:id="@+id/shopping_list"
         android:icon="@drawable/ic_bottom_list"
-        app:showAsAction="ifRoom"/>
+        android:title="@string/shopping_list"
+        app:showAsAction="ifRoom" />
 
-    <item android:id="@+id/new_item"
-        android:title="@string/new_item"
+    <item
+        android:id="@+id/new_item"
         android:icon="@drawable/ic_bottom_new"
-        app:showAsAction="ifRoom"/>
+        android:title="@string/new_item"
+        app:showAsAction="ifRoom" />
 
 </menu>
